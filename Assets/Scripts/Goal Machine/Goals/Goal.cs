@@ -88,12 +88,20 @@ public abstract class Goal
 
 public abstract class Goal_Atomic : Goal
 {
-    public StateModificationVector stateModVector;
+
 
     public Goal_Atomic(CognitiveAgent owner)
         : base(owner) { }
 
-    public abstract void SetStateModVector();
+    public override void Terminate()
+    {
+        base.Terminate();
+        Owner.stopModification();
+    }
+
+    public abstract void applyStateModVector();
+
+    
 }
 
 

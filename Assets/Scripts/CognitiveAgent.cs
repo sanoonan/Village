@@ -26,6 +26,7 @@ public enum Task
     Custom
 };
 
+
 public struct QuestInfo
 {
     public string QuestUID;
@@ -38,7 +39,7 @@ public class CognitiveAgent : MonoBehaviour
     public StateVector stateVector;
     public bool useStateVector = false;
 
-    public TaskManager taskManager;
+
 
     public bool StaticDemo;
     internal string DesiredTopic;           //The agent is currently thinking about, concerned about, or looking for the "UID" contained in here.
@@ -149,7 +150,9 @@ public class CognitiveAgent : MonoBehaviour
             curTask = routine.GetCurrentTask(DaylightScript.GetCurrentTime());
 
             if (useStateVector)
-                taskManager.setupTasks(routine);
+            {
+                stateVector.setupTasks(routine);
+            }
         }
 
         if (!StaticDemo)
@@ -301,5 +304,19 @@ public class CognitiveAgent : MonoBehaviour
     internal void ConsumeEquippedItem()
     {
         throw new System.NotImplementedException();
+    }
+
+
+
+
+    public void startModification(Task task)
+    {
+        if (useStateVector)
+            stateVector.startModification(task);
+    }
+    public void stopModification()
+    {
+        if (useStateVector)
+            stateVector.stopModification();
     }
 }

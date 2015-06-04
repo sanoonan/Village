@@ -260,11 +260,7 @@
      <Compile Include="Assets\Scripts\Character\HeadLookController.cs" />
      <Compile Include="Assets\Scripts\Character\TargetController.cs" />
      <Compile Include="Assets\Scripts\CognitiveAgent.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\State.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\StateManager.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\StateModificationVector.cs" />
      <Compile Include="Assets\Scripts\Desires Model\StateVector.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\TaskManager.cs" />
      <Compile Include="Assets\Scripts\Environment\AutoDoorActionScript.cs" />
      <Compile Include="Assets\Scripts\Environment\AutoGateActionScript.cs" />
      <Compile Include="Assets\Scripts\Environment\DaylightScript.cs" />
