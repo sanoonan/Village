@@ -1,0 +1,121 @@
+Base path: C:/Program Files (x86)/Unity/Editor/Data
+Pipe name: \\.\pipe\UnityShaderCompiler-3-8996
+Cmd: getPlatforms
+Cmd: compileSnippet
+  api=1 type=0 insize=2609 outsize=396 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_ON DIRLIGHTMAP_ON ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2577 outsize=460 kw=DIRECTIONAL_COOKIE SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2577 outsize=516 kw=POINT SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2577 outsize=585 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT SHADOWS_NATIVE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2579 outsize=496 kw=SPOT SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2579 outsize=2119 kw=DIRECTIONAL SHADOWS_SCREEN ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2579 outsize=516 kw=POINT_COOKIE SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2579 outsize=2363 kw=POINT_COOKIE SHADOWS_CUBE SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2782 outsize=524 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF VERTEXLIGHT_ON ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2751 outsize=585 kw=SPOT SHADOWS_DEPTH ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2751 outsize=516 kw=POINT SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2751 outsize=516 kw=POINT SHADOWS_CUBE SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4497 outsize=748 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4497 outsize=876 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF VERTEXLIGHT_ON ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4471 outsize=938 kw=SPOT SHADOWS_DEPTH ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4471 outsize=868 kw=POINT_COOKIE SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=4471 outsize=3411 kw=POINT SHADOWS_CUBE SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4471 outsize=3655 kw=POINT_COOKIE SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4471 outsize=4199 kw=POINT SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4471 outsize=5280 kw=POINT_COOKIE SHADOWS_CUBE SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2577 outsize=1073 kw=POINT_COOKIE SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2577 outsize=3232 kw=SPOT SHADOWS_DEPTH SHADOWS_NATIVE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2577 outsize=3842 kw=POINT SHADOWS_CUBE SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2617 outsize=2184 kw=POINT_COOKIE SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2617 outsize=585 kw=SPOT SHADOWS_DEPTH SHADOWS_NATIVE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2617 outsize=585 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2617 outsize=1400 kw=SPOT SHADOWS_DEPTH ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2617 outsize=2355 kw=DIRECTIONAL SHADOWS_SCREEN ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2617 outsize=4045 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=1562 outsize=584 kw=SHADOWS_SPLIT_SPHERES SHADOWS_NONATIVE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2782 outsize=396 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_ON DIRLIGHTMAP_ON ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2782 outsize=2501 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_ON DIRLIGHTMAP_ON ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2751 outsize=2672 kw=POINT_COOKIE SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2751 outsize=2745 kw=DIRECTIONAL_COOKIE SHADOWS_SCREEN ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2751 outsize=4110 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT SHADOWS_NATIVE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4497 outsize=876 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=4497 outsize=1306 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4471 outsize=848 kw=SPOT SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4471 outsize=876 kw=DIRECTIONAL SHADOWS_SCREEN ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=4471 outsize=938 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4471 outsize=4451 kw=SPOT SHADOWS_DEPTH ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=4471 outsize=1888 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=4471 outsize=5280 kw=POINT_COOKIE SHADOWS_CUBE SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2411 outsize=524 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2411 outsize=2119 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF VERTEXLIGHT_ON ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2411 outsize=375 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_ON DIRLIGHTMAP_ON ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2454 outsize=396 kw=DIRECTIONAL SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=2454 outsize=2598 kw=SPOT SHADOWS_DEPTH SHADOWS_NATIVE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=2454 outsize=516 kw=POINT_COOKIE SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2454 outsize=527 kw=POINT_COOKIE SHADOWS_OFF ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2454 outsize=758 kw=SPOT SHADOWS_DEPTH SHADOWS_NATIVE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2454 outsize=2647 kw=POINT SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2454 outsize=1067 kw=POINT_COOKIE SHADOWS_CUBE SHADOWS_SOFT ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2609 outsize=916 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_ON DIRLIGHTMAP_ON ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=2579 outsize=3200 kw=SPOT SHADOWS_DEPTH ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2579 outsize=1363 kw=POINT_COOKIE SHADOWS_CUBE ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=2579 outsize=1563 kw=POINT SHADOWS_CUBE SHADOWS_SOFT ok=1
+Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
+
+
+Quitting shader compiler process

@@ -1,0 +1,356 @@
+fileFormatVersion: 2
+guid: 645f1441c8531104b98828eb10d717eb
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Side_Bag01
+    100002: Boy R Toe0Nub
+    100004: Boy L Toe0Nub
+    100006: Boy R Thigh
+    100008: Weapon
+    100010: Boy Head
+    100012: Boy R Finger21
+    100014: Boy R Finger2
+    100016: Boy R Finger11
+    100018: Boy R Finger1
+    100020: Boy R Finger01
+    100022: Boy R Finger0
+    100024: Boy R Hand
+    100026: Boy R Forearm
+    100028: Boy R UpperArm
+    100030: Boy R Clavicle
+    100032: Boy L Finger21
+    100034: Boy L Finger2
+    100036: Darger
+    100038: Boy L Foot
+    100040: Boy L Calf
+    100042: Boy L Thigh
+    100044: Scult_End
+    100046: Scult_03
+    100048: Scult_02
+    100050: Scult_01
+    100052: Boy HeadNub
+    100054: Boy R Toe0
+    100056: Boy R Foot
+    100058: Side_Bag_End
+    100060: Boy R Calf
+    100062: Boy L Toe0
+    100064: Boy L Finger11
+    100066: Boy L Finger1
+    100068: Boy L Finger01
+    100070: Boy L Finger0
+    100072: Boy L Hand
+    100074: Boy L Forearm
+    100076: Boy L UpperArm
+    100078: Boy L Clavicle
+    100080: Boy Neck
+    100082: Boy Spine2
+    100084: Boy Spine1
+    100086: Boy Spine
+    100088: Boy Pelvis
+    100090: Boy Footsteps
+    100092: Boy
+    100094: Object005
+    100096: Object004
+    100098: scff
+    100100: boy_body
+    100102: //RootNode
+    100104: Boy R Finger2Nub
+    100106: Boy R Finger1Nub
+    100108: Boy R Finger0Nub
+    100110: Boy L Finger2Nub
+    100112: Boy L Finger1Nub
+    100114: Boy L Finger0Nub
+    400000: Side_Bag01
+    400002: Boy R Toe0Nub
+    400004: Boy L Toe0Nub
+    400006: Boy R Thigh
+    400008: Weapon
+    400010: Boy Head
+    400012: Boy R Finger21
+    400014: Boy R Finger2
+    400016: Boy R Finger11
+    400018: Boy R Finger1
+    400020: Boy R Finger01
+    400022: Boy R Finger0
+    400024: Boy R Hand
+    400026: Boy R Forearm
+    400028: Boy R UpperArm
+    400030: Boy R Clavicle
+    400032: Boy L Finger21
+    400034: Boy L Finger2
+    400036: Darger
+    400038: Boy L Foot
+    400040: Boy L Calf
+    400042: Boy L Thigh
+    400044: Scult_End
+    400046: Scult_03
+    400048: Scult_02
+    400050: Scult_01
+    400052: Boy HeadNub
+    400054: Boy R Toe0
+    400056: Boy R Foot
+    400058: Side_Bag_End
+    400060: Boy R Calf
+    400062: Boy L Toe0
+    400064: Boy L Finger11
+    400066: Boy L Finger1
+    400068: Boy L Finger01
+    400070: Boy L Finger0
+    400072: Boy L Hand
+    400074: Boy L Forearm
+    400076: Boy L UpperArm
+    400078: Boy L Clavicle
+    400080: Boy Neck
+    400082: Boy Spine2
+    400084: Boy Spine1
+    400086: Boy Spine
+    400088: Boy Pelvis
+    400090: Boy Footsteps
+    400092: Boy
+    400094: Object005
+    400096: Object004
+    400098: scff
+    400100: boy_body
+    400102: //RootNode
+    400104: Boy R Finger2Nub
+    400106: Boy R Finger1Nub
+    400108: Boy R Finger0Nub
+    400110: Boy L Finger2Nub
+    400112: Boy L Finger1Nub
+    400114: Boy L Finger0Nub
+    4300000: boy_body
+    4300002: scff
+    4300004: Object004
+    4300006: Object005
+    4300008: Darger
+    7400000: VB_Talk
+    11100000: //RootNode
+    13700000: Darger
+    13700002: Object005
+    13700004: Object004
+    13700006: scff
+    13700008: boy_body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: VB_Talk
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Boy
+        weight: 1
+      - path: Boy/Boy Footsteps
+        weight: 1
+      - path: Boy/Boy Pelvis
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy L Thigh
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy L Thigh/Boy L Calf
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy L Thigh/Boy L Calf/Boy L Foot
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy L Thigh/Boy L Calf/Boy L Foot/Boy L Toe0
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy L Thigh/Boy L Calf/Boy L Foot/Boy L Toe0/Boy
+          L Toe0Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy R Thigh
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy R Thigh/Boy R Calf
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy R Thigh/Boy R Calf/Boy R Foot
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy R Thigh/Boy R Calf/Boy R Foot/Boy R Toe0
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy R Thigh/Boy R Calf/Boy R Foot/Boy R Toe0/Boy
+          R Toe0Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy Head
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy Head/Boy
+          HeadNub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger0
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger0/Boy L Finger01
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger0/Boy L Finger01/Boy L Finger0Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger1
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger1/Boy L Finger11
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger1/Boy L Finger11/Boy L Finger1Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger2
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger2/Boy L Finger21
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy L Clavicle/Boy
+          L UpperArm/Boy L Forearm/Boy L Hand/Boy L Finger2/Boy L Finger21/Boy L Finger2Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger0
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger0/Boy R Finger01
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger0/Boy R Finger01/Boy R Finger0Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger1
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger1/Boy R Finger11
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger1/Boy R Finger11/Boy R Finger1Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger2
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger2/Boy R Finger21
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Boy Neck/Boy R Clavicle/Boy
+          R UpperArm/Boy R Forearm/Boy R Hand/Boy R Finger2/Boy R Finger21/Boy R Finger2Nub
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Scult_01
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Scult_01/Scult_02
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Scult_01/Scult_02/Scult_03
+        weight: 1
+      - path: Boy/Boy Pelvis/Boy Spine/Boy Spine1/Boy Spine2/Scult_01/Scult_02/Scult_03/Scult_End
+        weight: 1
+      - path: Boy/Boy Pelvis/Side_Bag01
+        weight: 1
+      - path: Boy/Boy Pelvis/Side_Bag01/Side_Bag_End
+        weight: 1
+      - path: boy_body
+        weight: 1
+      - path: Darger
+        weight: 1
+      - path: Object004
+        weight: 1
+      - path: Object005
+        weight: 1
+      - path: scff
+        weight: 1
+      - path: Weapon
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

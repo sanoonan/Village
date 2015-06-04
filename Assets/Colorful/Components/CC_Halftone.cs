@@ -1,0 +1,34 @@
+﻿using UnityEngine;
+
+[ExecuteInEditMode]
+[AddComponentMenu("Colorful/Halftone")]
+public class CC_Halftone : CC_Base
+{
+	public float density = 64.0f;
+	public int mode = 1;
+	public bool antialiasing = true;
+	public bool showOriginal = false;
+
+	void OnRenderImage(RenderTexture source, RenderTexture destination)
+	{
+		material.SetFloat("_density", density);
+
+		int pass = 0;
+
+		// Black and white
+		if (mode == 0)
+		{
+			if (antialiasing && showOriginal) pass = 3;
+			else if (antialiasing) pass = 1;
+			else if (showOriginal) pass = 2;
+		}
+
+		// CMYK
+		else if (mode == 1)
+		{
+			pass = antialiasing ? 5 : 4;
+		}
+
+		Graphics.Blit(source, destination, material, pass);
+	}
+}

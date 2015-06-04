@@ -1,0 +1,87 @@
+1.7
+- New effect, Halftone (CMYK and Black & White).
+- New effect, Cross Stitch.
+- Fixed a serialization bug affecting all effects' custom inspectors.
+
+1.6.1
+- Added an optional pixel perfect mode to the Pixelate and LED effects.
+- Added a ratio settings (can be set to automatic) to the Pixelate and LED effects to change the cell shape.
+- Added an optional noise pass on the Threshold effect.
+- Added HeatRamp.png in the resources folder (can be used to emulate a thermal vision with the Gradient Ramp effect).
+- Documentation fixes.
+
+1.6
+- New effect, Convolution Matrix 3x3.
+- New effect, Blend (works with Texture2D and MovieTexture), featuring 21 blending modes :
+	* Darken
+	* Multiply
+	* Color Burn
+	* Linear Burn
+	* Darker Color
+	* Lighten
+	* Screen
+	* Color Dodge
+	* Linear Dodge (Add)
+	* Lighter Color
+	* Overlay
+	* Soft Light
+	* Hard Light
+	* Vivid Light
+	* Linear Light
+	* Pin Light
+	* Hard Mix
+	* Difference
+	* Exclusion
+	* Subtract
+	* Divide
+- New option to desaturate the Fast Vignette.
+- Refactoring, improvements and optimizations of the following effects :
+	* Analog TV
+	* Fast Vignette
+	* Frost
+	* Grayscale
+	* Radial Blur
+
+1.5
+- New effect, Gradient Ramp.
+- New effect, Lookup Filter (advanced color grading).
+- New effect, Negative (with proper transition).
+- New effect, Wiggle (underwater distortion).
+- Full documentation.
+- Unity 4.3 compatibility fix.
+- General code cleaning, a few minor fixes and various optimizations.
+
+1.4.1
+- Fixed a weird bug with RGB Split only working in Directx 11 mode in some setups.
+
+1.4
+- New effect, RGB Split.
+- New effect, Sharpen.
+
+1.3.4
+- Fixed a bug with Unity 4.1 preventing most shaders to work correctly.
+
+1.3.2
+- Double vision: fixed a brightness related bug.
+- Double vision: added a new slider to fade the effect.
+- Levels: fixed a null pointer exception that could happen in the Editor.
+
+1.3.1
+- Code cleaning.
+- Performance improvements.
+
+1.3
+- Now compatible with Unity 4 and DirectX 11.
+- Small bug fixes.
+
+1.2
+- New effect, Analog TV, emulates a CRT screen with scanlines, static noise and barrel distortion !
+- New effect, Double Vision.
+- New effect, Frost, that looks like viewing through an ice-frosted glass (can be used as a vignette too, to "freeze" the screen progressively).
+
+1.1
+- Photo Filter now takes a Color as input instead of three floats.
+- New effect, Radial Blur, also known as "Zoom" Blur !
+
+1.0
+- Initial release.

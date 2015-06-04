@@ -1,0 +1,22 @@
+C:\Source Control\Dissertation - Prototype\Village\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Source Control\Dissertation - Prototype\Village\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Source Control\Dissertation - Prototype\Village\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Source Control\Dissertation - Prototype\Village\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Source Control\Dissertation - Prototype\Village\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Source Control\Dissertation - Prototype\Village\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Source Control\Dissertation - Prototype\Village\obj\Debug\UnityVS.Village.CSharp.csprojResolveAssemblyReference.cache
+C:\Source Control\Dissertation - Prototype\Village\obj\Debug\Assembly-CSharp.dll
+C:\Source Control\Dissertation - Prototype\Village\obj\Debug\Assembly-CSharp.pdb
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEditor.dll
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.dll
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.xml
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEditor.xml
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.Xcode.xml
+C:\Git Unity Projects\Village\obj\Debug\UnityVS.Village.CSharp.csprojResolveAssemblyReference.cache
+C:\Git Unity Projects\Village\obj\Debug\Assembly-CSharp.dll
+C:\Git Unity Projects\Village\obj\Debug\Assembly-CSharp.pdb

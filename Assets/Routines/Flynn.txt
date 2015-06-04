@@ -1,0 +1,7 @@
+0,Sleep
+8,Blacksmith
+10,Eat
+13,Blacksmith
+17,Eat
+18,Fisher
+20,Sleep

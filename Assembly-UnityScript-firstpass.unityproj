@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{30F9F052-891D-62FA-CC3F-2261396CA60D}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-UnityScript-firstpass</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_0;UNITY_4_5;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
+     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
+     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Convolution3x3.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 2.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Frost.shader" />
+     <None Include="Assets\NGUI\Examples\Models\Orc\Orc Skin.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 2.shader" />
+     <None Include="Assets\Shaders\ToonOutline.shader" />
+     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Masked Colored.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Threshold.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\LightCone.shader" />
+     <None Include="Assets\Models\Medieval_Toon_Village\Info.txt" />
+     <None Include="Assets\Shaders\ToonBasic.shader" />
+     <None Include="Assets\ShaderForge\Readme.txt" />
+     <None Include="Assets\Shaders\ToonTerrainBaseMap.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
+     <None Include="Assets\Colorful\Shaders\CC_Wiggle.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\MaterialPlatform.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Sharpen.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Blend.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\Vegetation.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_CrossStitch.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\VertexAnimation.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Grayscale.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
+     <None Include="Assets\Colorful\Shaders\CC_Led.shader" />
+     <None Include="Assets\Shaders\ToonCutout.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
+     <None Include="Assets\Models\villarger_B_Boy\ReadMe [V 2.5]  4_13.txt" />
+     <None Include="Assets\Colorful\Shaders\CC_Levels.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_BleachBypass.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\Cubemaps.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
+     <None Include="Assets\Sprites\Fonts\SourceSansPro_32.fnt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\Refraction.shader" />
+     <None Include="Assets\Shaders\Skybox Blended.shader" />
+     <None Include="Assets\Colorful\Shaders\Colorful.cginc" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\Parallax.shader" />
+     <None Include="Assets\DarkTonic\MasterAudio\ReleaseNotes.txt" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
+     <None Include="Assets\Sprites\Fonts\SourceSansPro_22.fnt" />
+     <None Include="Assets\Colorful\Shaders\CC_RadialBlur.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\LightWrapping.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 1.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_DoubleVision.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_AnalogTV.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Vibrance.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />
+     <None Include="Assets\Shaders\ToonPanning.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_BrightnessContrastGamma.shader" />
+     <None Include="Assets\Shaders\ToonTerrainFirstPass.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Posterize.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_HueSaturationValue.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\VertexColorRounding.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\TessellationDisplacement.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
+     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
+     <None Include="Assets\Colorful\Changelog.txt" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\Tiles.shader" />
+     <None Include="Assets\Sprites\Mobile Cartoon GUI\Examples\Readme.txt" />
+     <None Include="Assets\Colorful\Readme.txt" />
+     <None Include="Assets\Colorful\Shaders\CC_ChannelMixer.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_FastVignette.shader" />
+     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Pixelate.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_GradientRamp.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\PixelRotator.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
+     <None Include="Assets\NGUI\Examples\Shaders\Refractive.shader" />
+     <None Include="Assets\ShaderForge\Example Assets\Shaders\CustomLighting.shader" />
+     <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth.shader" />
+     <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
+     <None Include="Assets\Colorful\Shaders\CC_PhotoFilter.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_LookupFilter.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Halftone.shader" />
+     <None Include="Assets\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
+     <None Include="Assets\Sprites\Fonts\SourceSansPro_13.fnt" />
+     <None Include="Assets\NGUI\Examples\Resources\Localization.txt" />
+     <None Include="Assets\Colorful\Shaders\CC_RGBSplit.shader" />
+     <None Include="Assets\Shaders\ToonTerrainAddPass.shader" />
+     <None Include="Assets\Colorful\Shaders\CC_Negative.shader" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>
