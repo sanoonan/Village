@@ -38,6 +38,8 @@ public abstract class Goal
     //Undertakes any necessary tidying up before a goal is exited and is called just before a goal is destroyed.
     public virtual void Terminate() { }
 
+    
+
     public virtual void Reactivate() { }
 
     //Handles any messages going to the goal and / or sub-goals.
@@ -93,6 +95,11 @@ public abstract class Goal_Atomic : Goal
     public Goal_Atomic(CognitiveAgent owner)
         : base(owner) { }
 
+    public override void Activate()
+    {
+        applyStateModVector();
+    }
+
     public override void Terminate()
     {
         base.Terminate();
@@ -123,6 +130,14 @@ public abstract class Goal_Composite : Goal
         subGoals.Push(g);       //Add to the front of the stack, making it the new current sub-goal.
     }
 
+
+    public override void Terminate()
+    {
+        RemoveAllSubgoals();
+        base.Terminate();
+    }
+
+
     protected GoalStatus ProcessSubgoals()
     {
         GoalStatus statusOfSubGoal = GoalStatus.Active;
@@ -133,7 +148,10 @@ public abstract class Goal_Composite : Goal
             else
                 statusOfSubGoal = GoalStatus.Failed;
 
-            subGoals.Pop().Terminate();
+            Goal poppedGoal = subGoals.Pop();
+            if (Owner.useStateVector)
+                Debug.Log("newflynn");
+            poppedGoal.Terminate();
             if(subGoals.Count > 0)
                 subGoals.Peek().Reactivate();   //This allows for special commands that might need executed after a sub-goal takes main control again.
         }

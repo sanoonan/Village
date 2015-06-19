@@ -33,7 +33,7 @@ public class Goal_ShopKeeping : Goal_Composite
     }
 }
 
-public class Goal_ManageShop : Goal
+public class Goal_ManageShop : Goal_Atomic
 {
     ShopManager shopManager;
     public Goal_ManageShop(CognitiveAgent owner, ShopManager shopManager)
@@ -52,6 +52,13 @@ public class Goal_ManageShop : Goal
 
         Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
         Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
+
+        base.Activate();
+    }
+
+    public override void applyStateModVector()
+    {
+        Owner.startModification(Task.Shopkeeper);
     }
 
     public override void Reactivate()

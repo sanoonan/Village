@@ -32,7 +32,7 @@ public class Goal_Eat : Goal_Composite
     }
 }
 
-public class Goal_ConsumeFood : Goal
+public class Goal_ConsumeFood : Goal_Atomic
 {
     string targetUID;
 
@@ -44,6 +44,8 @@ public class Goal_ConsumeFood : Goal
         Reactivate();
         CurrentStatus = GoalStatus.Active;
         Owner.Inventory.DropCurrentItem();
+
+        base.Activate();
     }
 
     public override void Reactivate()
@@ -60,5 +62,10 @@ public class Goal_ConsumeFood : Goal
             Activate();
 
         return CurrentStatus;
+    }
+
+    public override void applyStateModVector()
+    {
+        Owner.startModification(Task.Eat);
     }
 }

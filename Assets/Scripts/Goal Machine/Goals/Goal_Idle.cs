@@ -18,7 +18,7 @@ public abstract class Goal_Idle : Goal_Atomic
         Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
         Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
 
-        applyStateModVector();
+        base.Activate();
     }
 
     public override void Terminate()
