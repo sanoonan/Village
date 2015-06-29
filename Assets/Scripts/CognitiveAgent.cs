@@ -36,8 +36,12 @@ public struct QuestInfo
 
 public class CognitiveAgent : MonoBehaviour
 {
+    public string agentId = System.Guid.NewGuid().ToString();
+
+
     public StateVector stateVector;
     public bool useStateVector = false;
+    public RelationshipManager relationshipManager;
 
 
 
@@ -141,6 +145,8 @@ public class CognitiveAgent : MonoBehaviour
 
         DialogManager.SetDialog("...");     //We initialise the dialog and thoughts to create a small initial size for the speech and thought bubbles.
         ThoughtManager.SetDialog("(...)");
+
+       
 
         IsAlert = true;
 

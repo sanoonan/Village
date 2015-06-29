@@ -9,8 +9,9 @@ public enum RelationshipValue
 };
 
 
-public class RelationshipVector : MonoBehaviour
+public class RelationshipVector
 {
+  
     private int numValues;
 
 
@@ -18,9 +19,7 @@ public class RelationshipVector : MonoBehaviour
     private float[] startingValues;
 
 
-
-
-    void Awake()
+    public RelationshipVector()
     {
         int[] valueEnums = (int[])System.Enum.GetValues(typeof(RelationshipValue));
         numValues = valueEnums.Length;
@@ -30,26 +29,7 @@ public class RelationshipVector : MonoBehaviour
 
         for (int i = 0; i < numValues; i++)
             startingValues[i] = Random.Range(-0.5f, 0.5f);
-
-
     }
-
-    void Start()
-    {
-        for (int i = 0; i < numValues; i++)
-            values[i] = startingValues[i];
-    }
-
-    void Update()
-    {
-      
-    }
-
-    void LateUpdate()
-    {
-       
-    }
-
 
  
 

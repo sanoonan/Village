@@ -69,6 +69,9 @@ public class Goal_Greeting : Goal
         Owner.Animation.CrossFade(Owner.AnimationKeys["greet"]);
 
         Owner.GetComponent<AudioSource>().PlayOneShot(Owner.GreetingClip);
+
+        if(Owner.useStateVector)
+            ModifyRelationships();
     }
 
     public override GoalStatus Process()
@@ -85,6 +88,15 @@ public class Goal_Greeting : Goal
     public override void Terminate()
     {
         Owner.DialogManager.SetDialog("...");
+    }
+
+    private void ModifyRelationships()
+    {
+        int numParticipants = participants.Count;
+
+        for (int i = 0; i < numParticipants; i++)
+            if(participants[i] != Owner.CharDetails.AgentID)
+                Owner.relationshipManager.addRandomRelationship(participants[i]);
     }
 }
 

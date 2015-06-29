@@ -275,6 +275,7 @@
     <Compile Include="Assets\Scripts\Character\HeadLookController.cs" />
     <Compile Include="Assets\Scripts\Character\TargetController.cs" />
     <Compile Include="Assets\Scripts\CognitiveAgent.cs" />
+    <Compile Include="Assets\Scripts\Desires Model\RelationshipManager.cs" />
     <Compile Include="Assets\Scripts\Desires Model\RelationshipVector.cs" />
     <Compile Include="Assets\Scripts\Desires Model\StateVector.cs" />
     <Compile Include="Assets\Scripts\Environment\AutoDoorActionScript.cs" />
