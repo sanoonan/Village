@@ -96,7 +96,7 @@ public class Goal_Greeting : Goal
 
         for (int i = 0; i < numParticipants; i++)
             if(participants[i] != Owner.CharDetails.AgentID)
-                Owner.relationshipManager.addRandomRelationship(participants[i]);
+                Owner.relationshipManager.addNewRelationship(participants[i]);
     }
 }
 

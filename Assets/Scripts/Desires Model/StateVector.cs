@@ -480,6 +480,11 @@ public class StateVector : MonoBehaviour
         {  
             float[] propDeltas = new float[numGoodCase];
 
+            if (totalDeltaDiff <= 0.0f)
+                Debug.LogError("OH NO");
+
+
+
             for (int i = 0; i < numGoodCase; i++)
                 propDeltas[i] = goodCaseTasksDeltaDiffs[i] /= totalDeltaDiff;
 

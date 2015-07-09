@@ -78,6 +78,7 @@ public class Goal_Scheduler : Goal_Composite
         if (subGoals.Count > 0)
             CurrentStatus = ProcessSubgoals();
         else
+         //  UpdateTask(Task.Idle);
             throw new UnityException("It really shouldn't be possible to have scheduled no goals!");
 
         return CurrentStatus;
