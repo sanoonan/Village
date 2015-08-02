@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour 
 {
+    private bool _enableControl = true;
+
     public MindsEye MindsEye;
     internal AgentInventory Inventory;
     public CharacterCue CharacterCue;               //A pointer to the component which contains info about the current character's cue information.
@@ -45,8 +48,12 @@ public class PlayerController : MonoBehaviour
     private float gravity = 21.0f;
     #endregion
 
+    public static PlayerController Instance;
+
     void Awake()
     {
+        Instance = this;
+
         //Cache our frequent lookups.
         Transform = GetComponent<Transform>();
 
@@ -71,6 +78,9 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (!_enableControl)
+            return;
+
         #region Moving and Animation
         Transform camTransform = Camera.main.transform;
         Vector3 fwd = camTransform.TransformDirection(Vector3.forward);
@@ -208,8 +218,11 @@ public class PlayerController : MonoBehaviour
             if(closestItem != null)
             {
                 ItemCue itmCue = (ItemCue)closestItem;
-                if(itmCue.Status == ItemStatus.Free)
+                if (itmCue.Status == ItemStatus.Free)
+                {
                     Inventory.PickupItem(itmCue, true);
+                    QuestManager.Instance.AttemptToComplete(new QFCD_AcquireItem(itmCue));
+                }                
             }
         }
         else if(Input.GetKeyDown(KeyCode.KeypadMinus))
@@ -223,7 +236,7 @@ public class PlayerController : MonoBehaviour
                 if (entry.Value.CueType == CueType.Character)
                 {
                     CharacterCue charCue = (CharacterCue)entry.Value;
-                    if(charCue.CharDetails.CognitiveAgent.HasQuest && Vector3.Distance(Transform.position, entry.Value.CachedTransform.position) < closestDist)
+                    if(/*charCue.CharDetails.CognitiveAgent.HasQuest && */Vector3.Distance(Transform.position, entry.Value.CachedTransform.position) < closestDist)
                     {
                         closestChar = charCue;
                         closestDist = Vector3.Distance(Transform.position, entry.Value.CachedTransform.position);
@@ -231,8 +244,14 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+//            if (closestChar != null)
+ //               Message.DispatchMessage(CharDetails.AgentID, closestChar.CharDetails.AgentID, TelegramType.QuestTrade);
+
             if (closestChar != null)
-                Message.DispatchMessage(CharDetails.AgentID, closestChar.CharDetails.AgentID, TelegramType.QuestTrade);
+            {
+                _transferNPC = closestChar;
+                StartCoroutine(ItemTransferCoroutine());
+            }
         }
         else if(Input.GetKeyDown(KeyCode.KeypadMultiply))
         {
@@ -252,7 +271,13 @@ public class PlayerController : MonoBehaviour
             }
 
             if (closestChar != null)
+			{
                 Message.DispatchMessage(CharDetails.AgentID, closestChar.CharDetails.AgentID, TelegramType.DiscussEvent);
+
+				string agentName = closestChar.transform.parent.gameObject.name;
+				int agentId = AgentManager.Instance.GetAgentIdByName( agentName );
+				QuestManager.Instance.AttemptToComplete( new QFCD_TalkToNPC( agentId ) );
+			}
         }
     }
 
@@ -284,5 +309,51 @@ public class PlayerController : MonoBehaviour
     public bool IsJumping()
     {
         return false;
+    }
+
+    public void EnableControl()
+    {
+        _enableControl = true;
+    }
+    public void DisableControl()
+    {
+        _enableControl = false;
+    }
+
+
+    private CharacterCue _transferNPC;
+    private bool _transferRespondedTo = false;
+    private bool _transferConfirmed = false;
+    private IEnumerator ItemTransferCoroutine()
+    {
+        float originalTimeScale = Time.timeScale;
+        Time.timeScale = 0.01f;
+
+        _transferRespondedTo = false;
+        string NPCname = _transferNPC.GetNameOfEntity();
+        string itemName = Inventory.GetEquippedItem().GetNameOfEntity();
+        NewUIController.Instance.InitItemTransferUI(NPCname, itemName);
+
+        while (!_transferRespondedTo)
+        {
+            yield return null;
+        }
+
+        if (_transferConfirmed)
+        {
+			ItemCue transferItem = Inventory.LoseEquippedItem();
+            _transferNPC.Inventory.PickupItem( transferItem, true );
+
+            int NpcId = AgentManager.Instance.GetAgentIdByName( NPCname );
+            QuestManager.Instance.AttemptToComplete( new QFCD_GiveItemToNPC( NpcId, transferItem ) ); 
+        }
+
+		Time.timeScale = originalTimeScale;
+    }
+
+    public void TransferResponse( bool response )
+    {
+        _transferConfirmed = response;
+        _transferRespondedTo = true;
     }
 }

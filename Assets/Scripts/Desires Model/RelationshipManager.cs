@@ -31,77 +31,99 @@ public class RelationshipManager : MonoBehaviour
     {
     }
 
-    public void assignMyId(int agentId)
+    public void AssignMyId(int agentId)
     {
         myId = agentId;
     }
 
-    public void addNewRelationship(int agentId)
+    public void AddNewRelationship(int agentId)
     {
-        if (checkIfMe(agentId))
+        if (IsMe(agentId))
             return;
 
-        if(checkIfAgentKnown(agentId))
+        if(IsAgentKnown(agentId))
             return;
 
         relationships.Add(agentId, new RelationshipVector());
     }
 
+	public void AddParent( int agentId )
+	{
+		AddNewRelationship( agentId );
+		parentsIds.Add( agentId );
+	}
+	public void AddChild( int agentId )
+	{
+		AddNewRelationship( agentId );
+		childrenIds.Add( agentId );
+	}
+	public void AddSpouse( int agentId )
+	{
+		AddNewRelationship( agentId );
+		spousesIds.Add( agentId );
+	}
 
-    private bool checkIfAgentKnown(int agentId)
+    private bool IsAgentKnown(int agentId)
     {
         return relationships.ContainsKey(agentId);
     }
 
 
-    private bool checkIfMe(int agentId)
+    private bool IsMe(int agentId)
     {
         if (agentId == myId)
         {
-            Debug.LogError("I cant have a relationship with myself");
             return true;
         }
         return false;
     }
 
 
-    public bool isConnectedTo(int agentId)
+    public bool IsConnectedTo(int agentId)
     {
-        if ((isParent(agentId)) || (isChild(agentId)) || (isSpouse(agentId)))
+        if ( ( IsParent( agentId ) ) || ( IsChild( agentId ) ) || ( IsSpouse( agentId ) ) )
             return true;
 
         return false;
     }
 
-    private bool isParent(int agentId)
+    private bool IsParent(int agentId)
     {
         return parentsIds.Contains(agentId);
     }
-    private bool isChild(int agentId)
+    private bool IsChild(int agentId)
     {
         return childrenIds.Contains(agentId);
     }
-    private bool isSpouse(int agentId)
+    private bool IsSpouse(int agentId)
     {
         return spousesIds.Contains(agentId);
     }
 
 
-    public bool isUnconnected()
+    public bool IsUnconnected()
     {
-        if (hasParent())
+		if (HasParent())
             return true;
 
-        if (hasChild())
+		if (HasChild())
             return true;
 
-        if (hasSpouse())
+		if (HasSpouse())
             return true;
 
         return false;
     }
 
-    private bool hasParent()
+	public bool HasEnoughParents()
+	{
+		if( parentsIds.Count >= 2 )
+			return true;
+
+		return false;
+	}
+
+    private bool HasParent()
     {
         if (parentsIds.Count > 0)
             return true;
@@ -109,7 +131,7 @@ public class RelationshipManager : MonoBehaviour
         return false;
     }
 
-    private bool hasChild()
+    private bool HasChild()
     {
         if (childrenIds.Count > 0)
             return true;
@@ -117,7 +139,7 @@ public class RelationshipManager : MonoBehaviour
         return false;
     }
 
-    private bool hasSpouse()
+    private bool HasSpouse()
     {
         if (spousesIds.Count > 0)
             return true;

@@ -315,6 +315,7 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
     <None Include="Assets\Routines\Flynn.txt" />
     <None Include="Assets\Routines\Leon.txt" />
+    <None Include="Assets\Routines\QuestGiver.txt" />
     <None Include="Assets\Routines\Zelos.txt" />
     <None Include="Assets\ShaderForge\Example Assets\Shaders\Cubemaps.shader" />
     <None Include="Assets\ShaderForge\Example Assets\Shaders\CustomLighting.shader" />

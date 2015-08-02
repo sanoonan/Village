@@ -71,6 +71,8 @@ public class AgentInventory
         itmCue.Status = ItemStatus.Owned;
 
         OwnerMind.MemoryGraph.BindRelatedCues(itmCue);
+
+        
     }
 
     public void EquipItem(string uid)
@@ -200,5 +202,22 @@ public class AgentInventory
         }
 
         return null;
+    }
+
+    public int GetNumInventoryItems()
+    {
+        return inventoryItems.Count;
+    }
+
+    public bool CheckIfHasItemWithCueMarker(string cueMarker)
+    {
+        int numItems = GetNumInventoryItems();
+
+        for (int i = 0; i < numItems; i++)
+        {
+            if (inventoryItems[i].hasCueMarker(cueMarker))
+                return true;
+        }
+        return false;
     }
 }

@@ -136,6 +136,7 @@ public class CognitiveAgent : MonoBehaviour
         AnimationKeys.Add("talk", "VB_Talk");
 
         Inventory = new AgentInventory(this);
+		CharacterCue.Inventory = Inventory;
     }
 
     void Start()

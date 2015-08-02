@@ -37,6 +37,33 @@ public class AgentManager : MonoBehaviour
 		return agents[agentID];
 	}
 
+    public string GetAgentName(int agentId)
+    {
+        CharacterDetails agentCharDetails = GetAgent(agentId);
+        GameObject agentObject = agentCharDetails.gameObject;
+        string agentName = agentObject.name;
+        return agentName;
+    }
+
+    public int GetAgentIdByName(string agentName)
+    {
+        int numAgents = GetAgentCount();
+
+        for (int i = 0; i < numAgents; i++)
+        {
+            string currAgentName = agents[i].gameObject.name;
+
+            if (agentName == currAgentName)
+                return i;
+        }
+
+
+        Debug.LogError("AgentManager:GetAgentIdByName - can't find agent with name '" + agentName + "'");
+        return -1;
+    }
+
+
+
     public CharacterDetails GetAgent(string targetUID)
     {
         for (int i = 0; i < agents.size; i++)

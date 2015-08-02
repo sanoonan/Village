@@ -10,16 +10,9 @@ public enum RelationshipValue
 
 
 public class RelationshipVector
-{
-  
+{ 
     private int numValues;
-
-
     private float[] values;
-
-
-
-
 
     public RelationshipVector()
     {
@@ -32,7 +25,4 @@ public class RelationshipVector
         for (int i = 0; i < numValues; i++)
             values[i] = 0.0f;
     }
-
- 
-
 }

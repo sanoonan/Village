@@ -29,14 +29,14 @@ public class FamilyTreeController : MonoBehaviour
 
   
 
-    private int getNumUnconnectedAgents()
+    private int GetNumUnconnectedAgents()
     {
         int numUnconnectedAgents = 0;
 
         for (int i = 0; i < numAgents; i++)
         {
-            RelationshipManager agent = getAgentRelationshipManager(i);
-            if (agent.isUnconnected())
+            RelationshipManager agent = GetAgentRelationshipManager(i);
+            if (agent.IsUnconnected())
                 numUnconnectedAgents++;
         }
 
@@ -44,7 +44,7 @@ public class FamilyTreeController : MonoBehaviour
     }
 
 
-    private RelationshipManager getAgentRelationshipManager(int id)
+    private RelationshipManager GetAgentRelationshipManager(int id)
     {
         CharacterDetails character = agentManager.GetAgent(id);
 

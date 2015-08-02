@@ -481,7 +481,7 @@ public class StateVector : MonoBehaviour
             float[] propDeltas = new float[numGoodCase];
 
             if (totalDeltaDiff <= 0.0f)
-                Debug.LogError("OH NO");
+                break;
 
 
 

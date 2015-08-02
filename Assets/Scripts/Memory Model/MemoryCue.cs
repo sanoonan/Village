@@ -79,6 +79,23 @@ public class MemoryCue : MonoBehaviour
         CurrentLocation = locCue.CurrentLocation;
     }
 
+    public bool hasCueMarker(string marker)
+    {
+        int numMarkers = CueMarkers.Length;
+
+        for (int i = 0; i < numMarkers; i++)
+            if (marker == CueMarkers[i])
+                return true;
+
+        return false;
+    }
+
+    public string GetNameOfEntity()
+    {
+        GameObject parentObject = gameObject.transform.parent.gameObject;
+        return parentObject.name;
+    }
+
     //void Update()
     //{
     //    gameObject.name = "MemNode - " + UniqueNodeID.ToString();

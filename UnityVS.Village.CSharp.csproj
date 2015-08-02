@@ -269,6 +269,7 @@
     <Compile Include="Assets\NGUI\Scripts\UI\UITexture.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UITooltip.cs" />
     <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
+    <Compile Include="Assets\SarahsUIController.cs" />
     <Compile Include="Assets\Scripts\AgentInventory.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraLabelAlignmentScript.cs" />
@@ -322,9 +323,19 @@
     <Compile Include="Assets\Scripts\Memory Model\UI\EmotionDisplayTest.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\QuestUIManager.cs" />
+    <Compile Include="Assets\Scripts\Quests\Chains\QC_GiveItemToQuestGiver.cs" />
+    <Compile Include="Assets\Scripts\Quests\Chains\QuestChain.cs" />
+    <Compile Include="Assets\Scripts\Quests\Fragments\QF_AcquireItem.cs" />
+    <Compile Include="Assets\Scripts\Quests\Fragments\QF_GiveItemToNPC.cs" />
+    <Compile Include="Assets\Scripts\Quests\Fragments\QF_TalkToNPC.cs" />
+    <Compile Include="Assets\Scripts\Quests\Fragments\QuestFragment.cs" />
+    <Compile Include="Assets\Scripts\Quests\QuestManager.cs" />
+    <Compile Include="Assets\Scripts\Quests\QuestUIController.cs" />
+    <Compile Include="Assets\Scripts\Quests\QuestUIPage.cs" />
     <Compile Include="Assets\Scripts\Routine.cs" />
     <Compile Include="Assets\Scripts\ShopManager.cs" />
     <Compile Include="Assets\Scripts\TransformParentChecker.cs" />
+    <Compile Include="Assets\Scripts\NewUIController.cs" />
     <Compile Include="Assets\Scripts\WorldClock.cs" />
     <Compile Include="Assets\ShaderForge\Example Assets\Scripts\EditorLabel.cs" />
     <Compile Include="Assets\ShaderForge\Example Assets\Scripts\EnableCameraDepthInForward.cs" />
@@ -397,6 +408,7 @@
     <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
     <None Include="Assets\Routines\Flynn.txt" />
     <None Include="Assets\Routines\Leon.txt" />
+    <None Include="Assets\Routines\QuestGiver.txt" />
     <None Include="Assets\Routines\Zelos.txt" />
     <None Include="Assets\ShaderForge\Example Assets\Shaders\Cubemaps.shader" />
     <None Include="Assets\ShaderForge\Example Assets\Shaders\CustomLighting.shader" />
