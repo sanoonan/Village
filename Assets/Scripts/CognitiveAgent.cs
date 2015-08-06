@@ -39,9 +39,15 @@ public class CognitiveAgent : MonoBehaviour
     public string agentId = System.Guid.NewGuid().ToString();
 
 
-    public StateVector stateVector;
+    
     public bool useStateVector = false;
+    
+    [HideInInspector]
+    public StateVector stateVector;
+    [HideInInspector]
     public RelationshipManager relationshipManager;
+    [HideInInspector]
+    public TraitsManager traitsManager;
 
 
 
@@ -137,6 +143,14 @@ public class CognitiveAgent : MonoBehaviour
 
         Inventory = new AgentInventory(this);
 		CharacterCue.Inventory = Inventory;
+        
+        if( useStateVector )
+        {
+            stateVector = GetComponent<StateVector>();
+            relationshipManager = GetComponent<RelationshipManager>();
+            traitsManager = GetComponent<TraitsManager>();
+        }
+        
     }
 
     void Start()
