@@ -36,11 +36,9 @@ public struct QuestInfo
 
 public class CognitiveAgent : MonoBehaviour
 {
-    public string agentId = System.Guid.NewGuid().ToString();
-
-
-    
-    public bool useStateVector = false;
+    public bool _useStateVector = true;
+    public bool _useRelationships = false;
+    public bool _useTraits = false;
     
     [HideInInspector]
     public StateVector stateVector;
@@ -144,12 +142,13 @@ public class CognitiveAgent : MonoBehaviour
         Inventory = new AgentInventory(this);
 		CharacterCue.Inventory = Inventory;
         
-        if( useStateVector )
-        {
+        if( _useStateVector )
             stateVector = GetComponent<StateVector>();
+        if( _useRelationships )
             relationshipManager = GetComponent<RelationshipManager>();
+        if( _useTraits )
             traitsManager = GetComponent<TraitsManager>();
-        }
+       
         
     }
 
@@ -170,9 +169,9 @@ public class CognitiveAgent : MonoBehaviour
             routine = new Routine(DailyRoutine);
             curTask = routine.GetCurrentTask(DaylightScript.GetCurrentTime());
 
-            if (useStateVector)
+            if ( _useStateVector )
             {
-                stateVector.setupTasks(routine);
+                stateVector.SetupTasks(routine);
             }
         }
 
@@ -186,8 +185,8 @@ public class CognitiveAgent : MonoBehaviour
     {
         if (!StaticDemo)
         {
-            if (useStateVector)
-                nextTask = stateVector.getBestTask(curTask);
+            if ( _useStateVector )
+                nextTask = stateVector.GetBestTask(curTask);
             else
                 nextTask = routine.GetCurrentTask(DaylightScript.GetCurrentTime());
 
@@ -334,12 +333,12 @@ public class CognitiveAgent : MonoBehaviour
 
     public void startModification(Task task)
     {
-        if (useStateVector)
-            stateVector.startModification(task);
+        if ( _useStateVector )
+            stateVector.StartModification(task);
     }
     public void stopModification()
     {
-        if (useStateVector)
-            stateVector.stopModification();
+        if ( _useStateVector )
+            stateVector.StopModification();
     }
 }

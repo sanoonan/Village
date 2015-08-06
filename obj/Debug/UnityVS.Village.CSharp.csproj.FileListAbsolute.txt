@@ -20,3 +20,7 @@ C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extensions.
 C:\Git Unity Projects\Village\obj\Debug\UnityVS.Village.CSharp.csprojResolveAssemblyReference.cache
 C:\Git Unity Projects\Village\obj\Debug\Assembly-CSharp.dll
 C:\Git Unity Projects\Village\obj\Debug\Assembly-CSharp.pdb
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.Analytics.dll
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.Networking.dll
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.Networking.xml
+C:\Git Unity Projects\Village\Temp\UnityVS_bin\Debug\UnityEngine.Analytics.xml

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Goal_Eat : Goal_Composite
@@ -64,7 +64,7 @@ public class Goal_ConsumeFood : Goal_Atomic
         return CurrentStatus;
     }
 
-    public override void applyStateModVector()
+    public override void ApplyStateModVector()
     {
         Owner.startModification(Task.Eat);
     }

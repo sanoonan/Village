@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 //Work in bi-directional nodes, so that we can have a node map inference. Also, make nodes shared, so an NPC only stores... references to single nodes?
@@ -97,7 +97,7 @@ public abstract class Goal_Atomic : Goal
 
     public override void Activate()
     {
-        applyStateModVector();
+        ApplyStateModVector();
     }
 
     public override void Terminate()
@@ -106,7 +106,7 @@ public abstract class Goal_Atomic : Goal
         Owner.stopModification();
     }
 
-    public abstract void applyStateModVector();
+    public abstract void ApplyStateModVector();
 
     
 }
@@ -149,7 +149,7 @@ public abstract class Goal_Composite : Goal
                 statusOfSubGoal = GoalStatus.Failed;
 
             Goal poppedGoal = subGoals.Pop();
-            if (Owner.useStateVector)
+            if (Owner._useStateVector)
                 Debug.Log("newflynn");
             poppedGoal.Terminate();
             if(subGoals.Count > 0)

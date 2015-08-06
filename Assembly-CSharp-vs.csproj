@@ -261,11 +261,11 @@
      <Compile Include="Assets\Scripts\Character\HeadLookController.cs" />
      <Compile Include="Assets\Scripts\Character\TargetController.cs" />
      <Compile Include="Assets\Scripts\CognitiveAgent.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\FamilyTreeController.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\RelationshipManager.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\RelationshipVector.cs" />
+     <Compile Include="Assets\Scripts\Constraints\FamilyTreeController.cs" />
+     <Compile Include="Assets\Scripts\Constraints\RelationshipManager.cs" />
+     <Compile Include="Assets\Scripts\Constraints\RelationshipVector.cs" />
+     <Compile Include="Assets\Scripts\Constraints\TraitsManager.cs" />
      <Compile Include="Assets\Scripts\Desires Model\StateVector.cs" />
-     <Compile Include="Assets\Scripts\Desires Model\TraitsManager.cs" />
      <Compile Include="Assets\Scripts\Environment\AutoDoorActionScript.cs" />
      <Compile Include="Assets\Scripts\Environment\AutoGateActionScript.cs" />
      <Compile Include="Assets\Scripts\Environment\DaylightScript.cs" />
@@ -309,6 +309,7 @@
      <Compile Include="Assets\Scripts\Memory Model\UI\EmotionDisplayTest.cs" />
      <Compile Include="Assets\Scripts\NewUIController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Plots\PlotFragment.cs" />
      <Compile Include="Assets\Scripts\QuestUIManager.cs" />
      <Compile Include="Assets\Scripts\Quests\Chains\QC_GiveItemToQuestGiver.cs" />
      <Compile Include="Assets\Scripts\Quests\Chains\QuestChain.cs" />

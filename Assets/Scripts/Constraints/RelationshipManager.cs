@@ -36,6 +36,12 @@ public class RelationshipManager : MonoBehaviour
         myId = agentId;
     }
 
+
+    #region ADD RELATIONSHIPS
+    public void AddNewRelationship( CharacterCue agent )
+    {
+        AddNewRelationship( agent.GetAgentId() );
+    }
     public void AddNewRelationship(int agentId)
     {
         if (IsMe(agentId))
@@ -47,21 +53,35 @@ public class RelationshipManager : MonoBehaviour
         relationships.Add(agentId, new RelationshipVector());
     }
 
+    public void AddParent( CharacterCue agent )
+    {
+        AddParent( agent.GetAgentId() );
+    }
 	public void AddParent( int agentId )
 	{
 		AddNewRelationship( agentId );
 		parentsIds.Add( agentId );
 	}
+    public void AddChild( CharacterCue agent )
+    {
+        AddChild( agent.GetAgentId() );
+    }
 	public void AddChild( int agentId )
 	{
 		AddNewRelationship( agentId );
 		childrenIds.Add( agentId );
 	}
+    public void AddSpouse( CharacterCue agent )
+    {
+        AddSpouse( agent.GetAgentId() );
+    }
 	public void AddSpouse( int agentId )
 	{
 		AddNewRelationship( agentId );
 		spousesIds.Add( agentId );
 	}
+    #endregion
+
 
     private bool IsAgentKnown(int agentId)
     {

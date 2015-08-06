@@ -17,5 +17,9 @@ public class CharacterDetails : MonoBehaviour
 	void Start () 
     {
         AgentID = AgentManager.Instance.AddAgent(this);     //Adds the agent to the manager so it can recieve messages, and gains its unique agent id.
+
+        RelationshipManager relationshipManager = gameObject.GetComponent<RelationshipManager>();
+        if( relationshipManager != null )
+            relationshipManager.AssignMyId( AgentID );
 	}
 }

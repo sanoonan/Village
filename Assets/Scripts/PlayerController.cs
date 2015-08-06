@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
             if (closestChar != null)
             {
                 _transferNPC = closestChar;
-                StartCoroutine(ItemTransferCoroutine());
+                StartCoroutine( ItemTransferCoroutine() );
             }
         }
         else if(Input.GetKeyDown(KeyCode.KeypadMultiply))
@@ -274,9 +274,8 @@ public class PlayerController : MonoBehaviour
 			{
                 Message.DispatchMessage(CharDetails.AgentID, closestChar.CharDetails.AgentID, TelegramType.DiscussEvent);
 
-				string agentName = closestChar.transform.parent.gameObject.name;
-				int agentId = AgentManager.Instance.GetAgentIdByName( agentName );
-				QuestManager.Instance.AttemptToComplete( new QFCD_TalkToNPC( agentId ) );
+                _conversationNPC = closestChar;
+                StartCoroutine( ConversationCoroutine() );
 			}
         }
     }
@@ -355,5 +354,32 @@ public class PlayerController : MonoBehaviour
     {
         _transferConfirmed = response;
         _transferRespondedTo = true;
+    }
+
+    private CharacterCue _conversationNPC;
+    private bool _conversationComplete = false;
+    private IEnumerator ConversationCoroutine()
+    {
+        float originalTimeScale = Time.timeScale;
+        Time.timeScale = 0.01f;
+        
+        _conversationComplete = false;
+        string NPCname = _conversationNPC.GetNameOfEntity();
+        NewUIController.Instance.InitConversationUI( NPCname );
+        
+        while (!_conversationComplete)
+        {
+            yield return null;
+        }
+
+        int NpcId = AgentManager.Instance.GetAgentIdByName( NPCname );
+        QuestManager.Instance.AttemptToComplete( new QFCD_TalkToNPC( NpcId ) );
+
+        Time.timeScale = originalTimeScale;
+    }
+
+    public void ConversationResponse()
+    {
+        _conversationComplete = true;
     }
 }

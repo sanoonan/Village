@@ -70,7 +70,7 @@ public class Goal_Greeting : Goal
 
         Owner.GetComponent<AudioSource>().PlayOneShot(Owner.GreetingClip);
 
-        if(Owner.useStateVector)
+        if(Owner._useRelationships)
             ModifyRelationships();
     }
 

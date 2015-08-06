@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 
@@ -56,7 +56,7 @@ public class Goal_ManageShop : Goal_Atomic
         base.Activate();
     }
 
-    public override void applyStateModVector()
+    public override void ApplyStateModVector()
     {
         Owner.startModification(Task.Shopkeeper);
     }
