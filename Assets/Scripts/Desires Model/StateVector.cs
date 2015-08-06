@@ -83,7 +83,7 @@ public class StateVector : MonoBehaviour
 
     void Update()
     {
-        timePassed = getTimePassed();
+        timePassed = GetTimePassed();
 
         if (timePassed >= updateFrequency)
         {
@@ -92,7 +92,7 @@ public class StateVector : MonoBehaviour
                 if(timePassed >= giveUpTime)
                     mustChange = true;
                 else
-                    applyModification(timePassed);
+                    ApplyModification(timePassed);
 
 
                 readyForTaskChange = true;
@@ -173,7 +173,7 @@ public class StateVector : MonoBehaviour
 
 
 
-    public void setupTasks(Routine routine)
+    public void SetupTasks(Routine routine)
     {
         tasks = new List<Task>();
 
@@ -212,7 +212,7 @@ public class StateVector : MonoBehaviour
 
 
 
-    private void applyModification(float timeDiff)
+    private void ApplyModification(float timeDiff)
     {
         if (currentModVector == -1)
             return;
@@ -223,7 +223,7 @@ public class StateVector : MonoBehaviour
         for (int i = 0; i < numStates; i++)
         {
             float propValue = proportion * modValues[currentModVector, i];
-            values[i] = modifyValue(values[i], propValue);
+            values[i] = ModifyValue(values[i], propValue);
         }
 
         
@@ -231,7 +231,7 @@ public class StateVector : MonoBehaviour
 
 
   
-    public void startModification(Task task)
+    public void StartModification(Task task)
     {
         if (!tasks.Contains(task))
         {
@@ -252,14 +252,14 @@ public class StateVector : MonoBehaviour
         lastTime = DaylightScript.GetCurrentTime();
     }
 
-    public void stopModification()
+    public void StopModification()
     {
-        float timePassed = getTimePassed();
-        applyModification(timePassed);
+        float timePassed = GetTimePassed();
+        ApplyModification(timePassed);
         currentModVector = -1;
     }
 
-    private float getTimePassed()
+    private float GetTimePassed()
     {
         float currentTime = DaylightScript.GetCurrentTime();
         float diffTime = currentTime - lastTime;
@@ -270,34 +270,32 @@ public class StateVector : MonoBehaviour
         return diffTime;
     }
 
-    public Task getBestTask(Task currentTask)
+    public Task GetBestTask(Task currentTask)
     {
         if (readyForTaskChange)
         {
             readyForTaskChange = false;
 
-            float currentDeltaSum = getCurrentDeltaSum();
+            float currentDeltaSum = GetCurrentDeltaSum();
 
             if ((currentDeltaSum > 0) || (mustChange))
             {
                 if (mustChange)
                 {
                     mustChange = false;
-                    return getBestTaskByDelta(currentDeltaSum, currentTask);
+                    return GetBestTaskByDelta(currentDeltaSum, currentTask);
                 }
 
-                return getBestTaskByDelta(currentDeltaSum);
-            }
-            
-            
+                return GetBestTaskByDelta(currentDeltaSum);
+            }  
         }
         return currentTask;
     }
 
 
  
- 
-    private Task getBestTaskOriginal(Task currentTask)
+ /*
+    private Task GetBestTaskOriginal(Task currentTask)
     {
         if (readyForTaskChange)
         {
@@ -343,9 +341,9 @@ public class StateVector : MonoBehaviour
         }
         return currentTask;
     }
+    */
 
-
-    private Task getBestTaskByDelta(float currentDeltaSum)
+    private Task GetBestTaskByDelta(float currentDeltaSum)
     {
         List<Task> bestCaseTasks = new List<Task>();
         List<Task> goodCaseTasks = new List<Task>();
@@ -355,7 +353,7 @@ public class StateVector : MonoBehaviour
 
         for (int i = 0; i < numTasks; i++)
         {
-            float deltaSum = getNewDeltaSum(i);
+            float deltaSum = GetNewDeltaSum(i);
             if (deltaSum == 0.0f)
             {
                 bestCaseTasks.Add(tasks[i]);
@@ -420,17 +418,15 @@ public class StateVector : MonoBehaviour
 
 
 
-    private Task getBestTaskByDelta(float currentDeltaSum, Task currentTask)
+    private Task GetBestTaskByDelta(float currentDeltaSum, Task currentTask)
     {
         List<Task> bestCaseTasks = new List<Task>();
         List<Task> goodCaseTasks = new List<Task>();
         List<float> goodCaseTasksDeltaDiffs = new List<float>();
 
-   
-
         for (int i = 0; i < numTasks; i++)
         {
-            float deltaSum = getNewDeltaSum(i);
+            float deltaSum = GetNewDeltaSum(i);
             if (deltaSum == 0.0f)
             {
                 bestCaseTasks.Add(tasks[i]);
@@ -444,7 +440,6 @@ public class StateVector : MonoBehaviour
 
             goodCaseTasks.Add(tasks[i]);
             goodCaseTasksDeltaDiffs.Add(deltaDiff);
-            
         }
 
         int numBestCase = bestCaseTasks.Count;
@@ -465,10 +460,6 @@ public class StateVector : MonoBehaviour
                 return bestCaseTasks[0];
 
 
-
-
-
-
         int numGoodCase = goodCaseTasks.Count;
 
         float totalDeltaDiff = 0.0f;
@@ -482,8 +473,6 @@ public class StateVector : MonoBehaviour
 
             if (totalDeltaDiff <= 0.0f)
                 break;
-
-
 
             for (int i = 0; i < numGoodCase; i++)
                 propDeltas[i] = goodCaseTasksDeltaDiffs[i] /= totalDeltaDiff;
@@ -511,6 +500,7 @@ public class StateVector : MonoBehaviour
             goodCaseTasks.RemoveAt(rejectedTaskNum);
             totalDeltaDiff -= goodCaseTasksDeltaDiffs[rejectedTaskNum];
             goodCaseTasksDeltaDiffs.RemoveAt(rejectedTaskNum);
+            numGoodCase--;
         }
 
         if (numGoodCase == 1)
@@ -532,29 +522,29 @@ public class StateVector : MonoBehaviour
         return currentTask;
     }
 
-    private float getCurrentDeltaSum()
+    private float GetCurrentDeltaSum()
     {
-        float deltaSum = getDeltaSum(values);
+        float deltaSum = GetDeltaSum(values);
 
         return deltaSum;
     }
 
-    private float getNewDeltaSum(int taskNum)
+    private float GetNewDeltaSum(int taskNum)
     {
-        float[] newValues = getModifiedStateVector(taskNum);
+        float[] newValues = GetModifiedStateVector(taskNum);
 
-        float deltaSum = getDeltaSum(newValues);
+        float deltaSum = GetDeltaSum(newValues);
 
         return deltaSum;
     }
 
-    private float getDeltaSum(float[] valueArray)
+    private float GetDeltaSum(float[] valueArray)
     {
         float deltaSum = 0.0f;
 
         for (int i = 0; i < numStates; i++)
         {
-            float delta = getDelta(i, valueArray[i]);
+            float delta = GetDelta(i, valueArray[i]);
             deltaSum += delta;
         }
 
@@ -562,7 +552,7 @@ public class StateVector : MonoBehaviour
     }
 
 
-    private float getDelta(int stateNum, float value)
+    private float GetDelta(int stateNum, float value)
     {
         float minValue = minValues[stateNum];
 
@@ -583,17 +573,17 @@ public class StateVector : MonoBehaviour
         return 0.0f;
     }
 
-    private float[] getModifiedStateVector(int taskNum)
+    private float[] GetModifiedStateVector(int taskNum)
     {
         float[] newValues = new float[numStates];
 
         for (int i = 0; i < numStates; i++)
-            newValues[i] = modifyValue(values[i], modValues[taskNum, i]);
+            newValues[i] = ModifyValue(values[i], modValues[taskNum, i]);
 
         return newValues;
     }
 
-    private float modifyValue(float original, float change)
+    private float ModifyValue(float original, float change)
     {
         float newValue = original + change;
 
