@@ -41,7 +41,7 @@ public class Routine
         return tasks[tasks.Length - 1];     //In this case, the only valid action is the last one.
     }
 
-    public Task[] getTasks()
+    public Task[] GetTasks()
     {
         return tasks;
     }

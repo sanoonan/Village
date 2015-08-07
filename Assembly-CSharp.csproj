@@ -265,7 +265,9 @@
      <Compile Include="Assets\Scripts\Constraints\RelationshipManager.cs" />
      <Compile Include="Assets\Scripts\Constraints\RelationshipVector.cs" />
      <Compile Include="Assets\Scripts\Constraints\TraitsManager.cs" />
+     <Compile Include="Assets\Scripts\Desires Model\OldStateVector.cs" />
      <Compile Include="Assets\Scripts\Desires Model\StateVector.cs" />
+     <Compile Include="Assets\Scripts\Desires Model\StateVectorModification.cs" />
      <Compile Include="Assets\Scripts\Environment\AutoDoorActionScript.cs" />
      <Compile Include="Assets\Scripts\Environment\AutoGateActionScript.cs" />
      <Compile Include="Assets\Scripts\Environment\DaylightScript.cs" />

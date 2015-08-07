@@ -58,7 +58,7 @@ public class Goal_ManageShop : Goal_Atomic
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Shopkeeper);
+        Owner.StartModification(Task.Shopkeeper);
     }
 
     public override void Reactivate()

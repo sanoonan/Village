@@ -41,11 +41,11 @@ public class Goal_Scheduler : Goal_Composite
             case Task.Woodcutter:
                 AddSubgoal(new Goal_WoodCutting(Owner));
                 break;
-
+/*
             case Task.Custom:    //This is for any custom initial goals you only want to apply to a specific person for testing.
                 AddSubgoal(new Goal_PatrolArea(Owner, "NorthernStreets", true));
                 break;
-
+                */
             case Task.Sleep:
                 AddSubgoal(new Goal_Sleeping(Owner));
                 break;

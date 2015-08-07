@@ -10,25 +10,28 @@ public enum RelationshipValue
 
 
 public class RelationshipVector
-{ 
-    private const float _minValue = 0.0f;
-    private const float _maxValue = 10.0f;
-    private const float _startingFamiliarity = 1.0f;
-    private const float _neutralValue = 5.0f;
+{
+    private const int _minValue = -10;
+    private const int _maxValue = 10;
+    private const int _neutralValue = 0;
 
     private int _numValues;
     private float[] _values;
+
+    private const float _minFamiliarity = 0.0f;
+    private const float _maxFamiliarity = 10.0f;
+    private const float _startingFamiliarity = 1.0f;
     private float _familiarity;
 
     public RelationshipVector()
     {
         int[] valueEnums = (int[])System.Enum.GetValues(typeof(RelationshipValue));
-        numValues = valueEnums.Length;
+        _numValues = valueEnums.Length;
 
-        values = new float[numValues];
+        _values = new float[_numValues];
 
-        for (int i = 0; i < numValues; i++)
-            values[i] = _neutralValue;
+        for (int i = 0; i < _numValues; i++)
+            _values[i] = _neutralValue;
             
         _familiarity = _startingFamiliarity;
     }
@@ -52,7 +55,7 @@ public class RelationshipVector
     }
     private void RandomiseFamiliarity()
     {
-        _familiarity = Random.Range( _minValue, _maxValue );
+        _familiarity = Random.Range( _minFamiliarity, _maxFamiliarity );
     }
 
 }

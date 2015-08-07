@@ -55,7 +55,7 @@ public class Goal_Idle_Blacksmith : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Blacksmith);
+        Owner.StartModification(Task.Blacksmith);
     }
 
    
@@ -68,7 +68,7 @@ public class Goal_Idle_StableWork : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.StableWorker);
+        Owner.StartModification(Task.StableWorker);
     }
 
    
@@ -81,7 +81,7 @@ public class Goal_Idle_Fish : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Fisher);
+        Owner.StartModification(Task.Fisher);
     }
 
    
@@ -94,7 +94,7 @@ public class Goal_Idle_Shopkeep : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Shopkeeper);
+        Owner.StartModification(Task.Shopkeeper);
     }
 
    
@@ -107,7 +107,7 @@ public class Goal_Idle_WoodCut : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Woodcutter);
+        Owner.StartModification(Task.Woodcutter);
     }
 
   
@@ -120,7 +120,7 @@ public class Goal_Idle_LumberJack : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Lumberjack);
+        Owner.StartModification(Task.Lumberjack);
     }
 
 }
@@ -133,7 +133,7 @@ public class Goal_Idle_Eat : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Eat);
+        Owner.StartModification(Task.Eat);
     }
 
    
@@ -146,7 +146,7 @@ public class Goal_Idle_Sleep : Goal_Idle
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Sleep);
+        Owner.StartModification(Task.Sleep);
     }
 
 }

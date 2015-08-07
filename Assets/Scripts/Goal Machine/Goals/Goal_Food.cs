@@ -66,6 +66,6 @@ public class Goal_ConsumeFood : Goal_Atomic
 
     public override void ApplyStateModVector()
     {
-        Owner.startModification(Task.Eat);
+        Owner.StartModification(Task.Eat);
     }
 }

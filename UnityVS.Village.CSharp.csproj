@@ -7,14 +7,16 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9EA1F0F2-F3CF-0D1D-C58F-9F7154F32A82}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>5.1.2f1</UnityVersion>
@@ -59,12 +61,6 @@
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -290,7 +286,9 @@
     <Compile Include="Assets\Scripts\Constraints\RelationshipManager.cs" />
     <Compile Include="Assets\Scripts\Constraints\RelationshipVector.cs" />
     <Compile Include="Assets\Scripts\Constraints\TraitsManager.cs" />
+    <Compile Include="Assets\Scripts\Desires Model\OldStateVector.cs" />
     <Compile Include="Assets\Scripts\Desires Model\StateVector.cs" />
+    <Compile Include="Assets\Scripts\Desires Model\StateVectorModification.cs" />
     <Compile Include="Assets\Scripts\Environment\AutoDoorActionScript.cs" />
     <Compile Include="Assets\Scripts\Environment\AutoGateActionScript.cs" />
     <Compile Include="Assets\Scripts\Environment\DaylightScript.cs" />

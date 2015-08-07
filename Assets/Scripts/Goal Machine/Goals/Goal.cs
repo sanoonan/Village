@@ -103,7 +103,7 @@ public abstract class Goal_Atomic : Goal
     public override void Terminate()
     {
         base.Terminate();
-        Owner.stopModification();
+        Owner.StopModification();
     }
 
     public abstract void ApplyStateModVector();

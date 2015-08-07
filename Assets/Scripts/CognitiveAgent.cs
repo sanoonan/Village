@@ -23,7 +23,6 @@ public enum Task
     Eat,
     Idle,
     Shopkeeper,
-    Custom
 };
 
 
@@ -143,7 +142,7 @@ public class CognitiveAgent : MonoBehaviour
 		CharacterCue.Inventory = Inventory;
         
         if( _useStateVector )
-            stateVector = GetComponent<StateVector>();
+            stateVector = GetComponentInChildren<StateVector>();
         if( _useRelationships )
             relationshipManager = GetComponent<RelationshipManager>();
         if( _useTraits )
@@ -331,12 +330,12 @@ public class CognitiveAgent : MonoBehaviour
 
 
 
-    public void startModification(Task task)
+    public void StartModification(Task task)
     {
         if ( _useStateVector )
             stateVector.StartModification(task);
     }
-    public void stopModification()
+    public void StopModification()
     {
         if ( _useStateVector )
             stateVector.StopModification();
