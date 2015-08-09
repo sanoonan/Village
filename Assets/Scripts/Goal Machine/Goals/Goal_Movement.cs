@@ -278,23 +278,23 @@ public class Goal_TraverseNode : Goal
         //* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
         float targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
 
-        Owner.CharacterState = CharacterState.Idle;
+        Owner._characterState = CharacterState.Idle;
 
         // Pick speed modifier
         if (Owner.Running)
         {
             targetSpeed *= Owner.RunSpeed;
-            Owner.CharacterState = CharacterState.Running;
+            Owner._characterState = CharacterState.Running;
         }
         else if (Time.time - Owner.TrotAfterSeconds > Owner.WalkTimeStart)
         {
             targetSpeed *= Owner.TrotSpeed;
-            Owner.CharacterState = CharacterState.Trotting;
+            Owner._characterState = CharacterState.Trotting;
         }
         else
         {
             targetSpeed *= Owner.WalkSpeed;
-            Owner.CharacterState = CharacterState.Walking;
+            Owner._characterState = CharacterState.Walking;
         }
 
         Owner.MoveSpeed = Mathf.Lerp(Owner.MoveSpeed, targetSpeed, curSmooth);
@@ -310,20 +310,9 @@ public class Goal_TraverseNode : Goal
         // Move the controller
         Owner.NavAgent.Move(movement);
 
-        if (Owner.CharacterState == CharacterState.Running)
+        if ( ( Owner._characterState == CharacterState.Running ) || ( Owner._characterState == CharacterState.Walking ) || ( Owner._characterState == CharacterState.Trotting ) ) 
         {
-            Owner.Animation[Owner.AnimationKeys["run"]].speed = Mathf.Clamp(movementSpeed, 0.0f, Owner.AnimationSpeed);
-            Owner.Animation.CrossFade(Owner.AnimationKeys["run"]);
-        }
-        else if (Owner.CharacterState == CharacterState.Trotting)
-        {
-            Owner.Animation[Owner.AnimationKeys["walk"]].speed = Mathf.Clamp(movementSpeed, 0.0f, Owner.AnimationSpeed);
-            Owner.Animation.CrossFade(Owner.AnimationKeys["walk"]);
-        }
-        else if (Owner.CharacterState == CharacterState.Walking)
-        {
-            Owner.Animation[Owner.AnimationKeys["walk"]].speed = Mathf.Clamp(movementSpeed, 0.0f, Owner.AnimationSpeed * 0.75f);
-            Owner.Animation.CrossFade(Owner.AnimationKeys["walk"]);
+            Owner._animationController.SetAnimation( Owner._characterState, movementSpeed );
         }
 
         Owner.Transform.rotation = Quaternion.LookRotation(Owner.MoveDirection);

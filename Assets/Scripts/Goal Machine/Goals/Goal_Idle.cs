@@ -15,8 +15,7 @@ public abstract class Goal_Idle : Goal_Atomic
         CurrentStatus = GoalStatus.Active;
 
         //Owner.lblThought.text = ("(Idling...)");
-        Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
+        Owner._animationController.SetAnimation( CharacterState.Idle, Owner.AnimationSpeed );
 
         base.Activate();
     }

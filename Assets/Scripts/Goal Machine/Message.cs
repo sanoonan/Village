@@ -47,7 +47,7 @@ public static class Message
 
 		if (delay <= 0.0f) 
 		{
-			CognitiveAgent rAgent = AgentManager.Instance.GetAgent(receiver).CognitiveAgent;
+			CognitiveAgent rAgent = AgentManager.Instance.GetAgent(receiver)._cognitiveAgent;
 			SendMessage(rAgent, telegram);
 		}
 		else
@@ -63,7 +63,7 @@ public static class Message
 		{
 			if(telegramQueue[i].DispatchTime <= Time.time)
 			{
-				CognitiveAgent rAgent = AgentManager.Instance.GetAgent(telegramQueue[i].Receiver).CognitiveAgent;
+				CognitiveAgent rAgent = AgentManager.Instance.GetAgent(telegramQueue[i].Receiver)._cognitiveAgent;
 				SendMessage(rAgent, telegramQueue[i]);
 				telegramQueue.RemoveAt(i);
 			}

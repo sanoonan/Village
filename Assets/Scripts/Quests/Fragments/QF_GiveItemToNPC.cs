@@ -40,6 +40,16 @@ public class QF_GiveItemToNPC : QuestFragment
         return false;
     }
 
+    public override bool IsPossible()
+    {
+        CharacterDetails targetAgentDetails = AgentManager.Instance.GetAgent( targetAgentId );
+
+        if ( targetAgentDetails.IsAlive() )
+            return true;
+
+        return false;
+    }
+
     public override bool AttemptImmediateCompletion()
     {
         return false;
@@ -50,9 +60,9 @@ public class QF_GiveItemToNPC : QuestFragment
         questAction = QuestAction.GIVE_ITEM_TO_NPC;
     }
 
-    public override void setFragmentDescription()
+    public override void SetFragmentDescription()
     {
-        string agentName = AgentManager.Instance.GetAgentName(targetAgentId);
+        string agentName = AgentManager.Instance.GetAgentNameById(targetAgentId);
 
         description = "Give a " + targetItemMarker + "to " + agentName;
     }

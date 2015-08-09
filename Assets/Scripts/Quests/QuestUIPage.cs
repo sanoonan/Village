@@ -26,15 +26,15 @@ public class QuestUIPage
             return;
         }
 
-        questChainText = questChain.getDescription();
+        questChainText = questChain.GetDescription();
 
-        List<QuestFragment> activeQuestFragments = questChain.getActiveFragments();
+        List<QuestFragment> activeQuestFragments = questChain.GetActiveFragments();
         numFragmentTexts = activeQuestFragments.Count;
 
         questFragmentsText = new List<string>();
         for (int i = 0; i < numFragmentTexts; i++)
         {
-            questFragmentsText.Add(activeQuestFragments[i].getFragmentDescription());
+            questFragmentsText.Add(activeQuestFragments[i].GetFragmentDescription());
         }
     }
 

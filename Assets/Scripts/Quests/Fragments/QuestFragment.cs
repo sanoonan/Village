@@ -28,6 +28,7 @@ public abstract class QuestFragment
     protected abstract void SetQuestAction();
 
     public abstract bool AttemptImmediateCompletion();
+    public abstract bool IsPossible();
 
     public void Activate()
     {
@@ -43,17 +44,17 @@ public abstract class QuestFragment
 
     #region GETTERS
 
-    public bool isActive()
+    public bool IsActive()
     {
         return active;
     }
 
-    public bool isCompleted()
+    public bool IsComplete()
     {
         return completed;
     }
 
-    public bool hasPrerequisites()
+    public bool HasPrerequisites()
     {
         return prerequisites;
     }
@@ -89,15 +90,15 @@ public abstract class QuestFragment
 
 
 
-    public string getFragmentDescription()
+    public string GetFragmentDescription()
     {
         if((description == "")||(description==null))
-            setFragmentDescription();
+            SetFragmentDescription();
 
         return description;
     }
 
-    public abstract void setFragmentDescription();
+    public abstract void SetFragmentDescription();
     
 }
 

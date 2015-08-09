@@ -24,8 +24,7 @@ public class Goal_Talk : Goal
 
         CurrentStatus = GoalStatus.Active;
 
-        Owner.Animation[Owner.AnimationKeys["talk"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["talk"]);
+        Owner._animationController.SetAnimation( CharacterState.Talking );
     }
 
     public override GoalStatus Process()
@@ -64,9 +63,7 @@ public class Goal_Greeting : Goal
 
         CurrentStatus = GoalStatus.Active;
 
-        Owner.Animation[Owner.AnimationKeys["greet"]].speed = Owner.AnimationSpeed * 0.5f;
-        Owner.Animation[Owner.AnimationKeys["greet"]].wrapMode = WrapMode.Once;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["greet"]);
+        Owner._animationController.SetAnimation( CharacterState.Greeting );
 
         Owner.GetComponent<AudioSource>().PlayOneShot(Owner.GreetingClip);
 
@@ -79,7 +76,7 @@ public class Goal_Greeting : Goal
         if (CurrentStatus == GoalStatus.Inactive)
             Activate();
 
-        if (Owner.Animation.IsPlaying(Owner.AnimationKeys["greet"]) == false)
+        if (Owner._animationController.IsAnimationPlaying( CharacterState.Greeting ) )
             CurrentStatus = GoalStatus.Completed;
 
         return CurrentStatus;

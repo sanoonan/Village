@@ -151,7 +151,7 @@ public class QuestUIController : MonoBehaviour
 
     public void AddSampleQuest()
     {
-        QuestManager.Instance.AddActiveQuest(new QC_GiveItemToQuestGiver("Lloyd", "hammer"));
+        QuestManager.Instance.AddActiveQuest(new QC_KillNpcAndReportToQuestGiver("Senel", "Lloyd"));
     }
 
     public void UpdateAllPages()

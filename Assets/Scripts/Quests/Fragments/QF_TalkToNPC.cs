@@ -42,14 +42,24 @@ public class QF_TalkToNPC : QuestFragment
         return false;
     }
 
+    public override bool IsPossible()
+    {
+        CharacterDetails targetAgentDetails = AgentManager.Instance.GetAgent( targetAgentId );
+
+        if ( targetAgentDetails.IsAlive() )
+            return true;
+
+        return false;
+    }
+
     protected override void SetQuestAction()
     {
         questAction = QuestAction.TALK_TO_NPC;
     }
 
-    public override void setFragmentDescription()
+    public override void SetFragmentDescription()
     {
-        string agentName = AgentManager.Instance.GetAgentName(targetAgentId);
+        string agentName = AgentManager.Instance.GetAgentNameById(targetAgentId);
 
         description = "Talk to " + agentName;
     }

@@ -12,7 +12,7 @@ public class QC_GiveItemToQuestGiver : QuestChain
         targetItemMarker = itemMarker;
 
         AddActiveQuestFragment(new QF_AcquireItem(targetItemMarker));
-        AddLinearQuestFragment(new QF_GiveItemToNPC(questGiverId, targetItemMarker));
+        AddLinearQuestFragment(new QF_GiveItemToNPC(_questGiverId, targetItemMarker));
     }
 
     public QC_GiveItemToQuestGiver(string _questGiverName, string itemMarker)
@@ -21,7 +21,7 @@ public class QC_GiveItemToQuestGiver : QuestChain
         targetItemMarker = itemMarker;
 
         AddActiveQuestFragment(new QF_AcquireItem(targetItemMarker));
-        AddLinearQuestFragment(new QF_GiveItemToNPC(questGiverId, targetItemMarker));
+        AddLinearQuestFragment(new QF_GiveItemToNPC(_questGiverId, targetItemMarker));
     }
 
    
@@ -29,8 +29,8 @@ public class QC_GiveItemToQuestGiver : QuestChain
 
 
 
-    public override void setChainDescription()
+    public override void SetChainDescription()
     {
-        description = "Give a " + targetItemMarker + " to " + AgentManager.Instance.GetAgentName(questGiverId);
+        description = "Give a " + targetItemMarker + " to " + AgentManager.Instance.GetAgentNameById(_questGiverId);
     }
 }

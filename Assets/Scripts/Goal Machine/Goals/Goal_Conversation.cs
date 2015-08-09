@@ -268,7 +268,7 @@ public class Goal_Conversation : Goal_Composite
             if (participants[i] == Owner.CharDetails.AgentID)
                 continue;
 
-            AgentInventory traderInventory = AgentManager.Instance.GetAgent(participants[i]).CognitiveAgent.Inventory;
+            AgentInventory traderInventory = AgentManager.Instance.GetAgent(participants[i])._cognitiveAgent.Inventory;
 
             //Get equipped item from trader's inventory.
             //See if cues of equipped item match the cue needed to satisfy the quest.

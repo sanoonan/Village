@@ -34,6 +34,11 @@ public class QF_AcquireItem : QuestFragment
         return false;
     }
 
+    public override bool IsPossible()
+    {
+        return true;
+    }
+
     public override bool AttemptImmediateCompletion()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -53,7 +58,7 @@ public class QF_AcquireItem : QuestFragment
         questAction = QuestAction.ACQUIRE_ITEM;
     }
 
-    public override void setFragmentDescription()
+    public override void SetFragmentDescription()
     {
         description = "Acquire a " + targetItemMarker;
     }

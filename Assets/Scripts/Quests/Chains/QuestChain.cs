@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public abstract class QuestChain
 {
-    protected int questGiverId;
+    protected int _questGiverId;
 
     protected string description = "";
 
@@ -15,7 +15,7 @@ public abstract class QuestChain
 
     public QuestChain(int id)
     {
-        questGiverId = id;
+        _questGiverId = id;
         numFragments = 0;
         numCompletedFragments = 0;
         questFragments = new List<QuestFragment>();
@@ -23,18 +23,18 @@ public abstract class QuestChain
 
     public QuestChain(string agentName)
     {
-        questGiverId = AgentManager.Instance.GetAgentIdByName(agentName);
+        _questGiverId = AgentManager.Instance.GetAgentIdByName(agentName);
         numFragments = 0;
         numCompletedFragments = 0;
         questFragments = new List<QuestFragment>();
     }
 
-    public List<QuestFragment> getActiveFragments()
+    public List<QuestFragment> GetActiveFragments()
     {
         List<QuestFragment> fragments = new List<QuestFragment>();
 
         for (int i = 0; i < numFragments; i++)
-            if (questFragments[i].isActive())
+            if (questFragments[i].IsActive())
                 fragments.Add(questFragments[i]);
 
         return fragments;
@@ -93,7 +93,7 @@ public abstract class QuestChain
         for (int i = 0; i < numFragments; i++)
         {
             QuestFragment currFragment = questFragments[i];
-            if(currFragment.isActive())
+            if(currFragment.IsActive())
             {
                 if (currFragment.AttemptToComplete(data))
                 {
@@ -119,7 +119,7 @@ public abstract class QuestChain
         for (int i = 0; i < numFragments; i++)
         {
             QuestFragment currFragment = questFragments[i];
-            if (currFragment.isActive())
+            if (currFragment.IsActive())
             {
                 if (currFragment.AttemptImmediateCompletion())
                 {
@@ -138,6 +138,19 @@ public abstract class QuestChain
         return anyQuestCompleted;
     }
 
+    public bool IsPossible()
+    {
+        for ( int i = 0; i < numFragments; i++ )
+        {
+            if ( !questFragments[i].IsComplete() )
+            {
+                if ( !questFragments[i].IsPossible() )
+                    return false;
+            }
+        }
+        return true;
+    }
+
     public bool IsComplete()
     {
         if (numCompletedFragments == numFragments)
@@ -146,13 +159,13 @@ public abstract class QuestChain
         return false;
     }
 
-    public string getDescription()
+    public string GetDescription()
     {
         if (description == "")
-            setChainDescription();
+            SetChainDescription();
 
         return description;
     }
 
-    public abstract void setChainDescription();
+    public abstract void SetChainDescription();
 }

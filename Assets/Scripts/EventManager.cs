@@ -94,7 +94,7 @@ public class EventManager : MonoBehaviour
         for (int i = 0; i < AgentManager.Instance.GetAgentCount(); i++)
         {
             CharacterDetails charDetails = AgentManager.Instance.GetAgent(i);
-            MemoryGraph charGraph = charDetails.IsPlayer ? charDetails.PlayerAgent.MindsEye.MemoryGraph : charDetails.CognitiveAgent.MindsEye.MemoryGraph;
+            MemoryGraph charGraph = charDetails.IsPlayer ? charDetails.PlayerAgent.MindsEye.MemoryGraph : charDetails._cognitiveAgent.MindsEye.MemoryGraph;
 
             EventNode coreEvent = new EventNode("FrogAttack", null, new string[] { "EVN_FrogAttack" });
             MemoryGraphNode coreEventNode = charGraph.AddNamedNodeToGraph(coreEvent);

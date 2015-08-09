@@ -115,8 +115,7 @@ public class Goal_DisplayDialogue : Goal
         dialogueTimer = 3.0f;
         CurrentStatus = GoalStatus.Active;
 
-        Owner.Animation[Owner.AnimationKeys["talk"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["talk"]);
+        Owner._animationController.SetAnimation( CharacterState.Talking, Owner.AnimationSpeed );
     }
 
     public override void Reactivate()

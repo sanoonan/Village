@@ -4,12 +4,15 @@ using System.Collections.Generic;
 
 public enum CharacterState
 {
-    Idle = 0,
-    Walking = 1,
-    Trotting = 2,
-    Running = 3,
-    Jumping = 4,
-    Greeting = 5,
+    Idle,
+    Walking,
+    Trotting,
+    Running,
+    Jumping,
+    Greeting,
+    Talking,
+    Dying,
+    Attacking,
 }
 
 public enum Task
@@ -68,8 +71,8 @@ public class CognitiveAgent : MonoBehaviour
     public CharacterCue CharacterCue;               //A pointer to the component which contains info about the current character's cue information.
     #endregion
 
-    #region Cached Components
-    internal Animation Animation;       //Cached animation component       
+    #region Cached Components    
+    public AnimationController _animationController;
     internal Transform Transform;       //Cached transform
     internal GameObject Self;           //and cached Game Object lookup.
     #endregion
@@ -104,10 +107,10 @@ public class CognitiveAgent : MonoBehaviour
 
     internal float SpeedSmoothing = 10.0f;
 
-    internal CharacterState CharacterState = CharacterState.Idle;
+    internal CharacterState _characterState = CharacterState.Idle;
     internal bool Running = false;
 
-    internal Dictionary<string, string> AnimationKeys;            //A lookup that compares generic animation names (i.e. run) to the corressponding animation name on the model (i.e. VB_RUN).
+   
     internal float AnimationSpeed = 1.0f;                                //How fast the animations should play.
     #endregion
 
@@ -118,10 +121,10 @@ public class CognitiveAgent : MonoBehaviour
         Self = gameObject;
 
         //Get our basic components.
-        Animation = GetComponent<Animation>();
         NavAgent = GetComponent<NavMeshAgent>();
         ViewController = GetComponent<HeadLookController>();
         CharDetails = GetComponent<CharacterDetails>();
+        _animationController = GetComponent<AnimationController>();
 
         NavAgent.enabled = false;   //We disable the nav agent, so that we can move the Agent to its starting position (Moving with NavAgent enabled causes path finding and we simply want to "place" them at the start.) 
    
@@ -130,13 +133,7 @@ public class CognitiveAgent : MonoBehaviour
 
         MoveDirection = Transform.TransformDirection(Vector3.forward);  //Get their initial facing direction.
 
-        //Add the basic animation info.
-        AnimationKeys = new Dictionary<string, string>();
-        AnimationKeys.Add("run", "VB_Run");
-        AnimationKeys.Add("walk", "VB_Walk");
-        AnimationKeys.Add("idle", "VB_Idle");
-        AnimationKeys.Add("greet", "VB_Greeting");
-        AnimationKeys.Add("talk", "VB_Talk");
+
 
         Inventory = new AgentInventory(this);
 		CharacterCue.Inventory = Inventory;
@@ -339,5 +336,27 @@ public class CognitiveAgent : MonoBehaviour
     {
         if ( _useStateVector )
             stateVector.StopModification();
+    }
+
+
+    public void Die()
+    {
+        StartCoroutine( DeathCoroutine() );
+    }
+
+    private IEnumerator DeathCoroutine()
+    {
+        if ( ( _characterState == CharacterState.Dying ) || ( !CharDetails.IsAlive() ) )
+        {
+            yield break;
+        }
+
+        _characterState = CharacterState.Dying;
+        _animationController.SetAnimation( _characterState );
+
+        while ( _animationController.IsAnimationPlaying( CharacterState.Dying ) )
+            yield return null;
+
+        CharDetails.Die();
     }
 }

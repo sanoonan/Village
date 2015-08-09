@@ -258,6 +258,9 @@
      <Compile Include="Assets\Scripts\AgentInventory.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraLabelAlignmentScript.cs" />
+     <Compile Include="Assets\Scripts\Character\AgentManager.cs" />
+     <Compile Include="Assets\Scripts\Character\AnimationController.cs" />
+     <Compile Include="Assets\Scripts\Character\CharacterDetails.cs" />
      <Compile Include="Assets\Scripts\Character\HeadLookController.cs" />
      <Compile Include="Assets\Scripts\Character\TargetController.cs" />
      <Compile Include="Assets\Scripts\CognitiveAgent.cs" />
@@ -273,8 +276,6 @@
      <Compile Include="Assets\Scripts\Environment\DaylightScript.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Scripts\EventTag.cs" />
-     <Compile Include="Assets\Scripts\Goal Machine\AgentManager.cs" />
-     <Compile Include="Assets\Scripts\Goal Machine\CharacterDetails.cs" />
      <Compile Include="Assets\Scripts\Goal Machine\Goals\Goal.cs" />
      <Compile Include="Assets\Scripts\Goal Machine\Goals\Goal_Blacksmith.cs" />
      <Compile Include="Assets\Scripts\Goal Machine\Goals\Goal_Conversation.cs" />
@@ -314,9 +315,11 @@
      <Compile Include="Assets\Scripts\Plots\PlotFragment.cs" />
      <Compile Include="Assets\Scripts\QuestUIManager.cs" />
      <Compile Include="Assets\Scripts\Quests\Chains\QC_GiveItemToQuestGiver.cs" />
+     <Compile Include="Assets\Scripts\Quests\Chains\QC_KillNpcAndReportToQuestGiver.cs" />
      <Compile Include="Assets\Scripts\Quests\Chains\QuestChain.cs" />
      <Compile Include="Assets\Scripts\Quests\Fragments\QF_AcquireItem.cs" />
      <Compile Include="Assets\Scripts\Quests\Fragments\QF_GiveItemToNPC.cs" />
+     <Compile Include="Assets\Scripts\Quests\Fragments\QF_KillNPC.cs" />
      <Compile Include="Assets\Scripts\Quests\Fragments\QF_TalkToNPC.cs" />
      <Compile Include="Assets\Scripts\Quests\Fragments\QuestFragment.cs" />
      <Compile Include="Assets\Scripts\Quests\QuestManager.cs" />

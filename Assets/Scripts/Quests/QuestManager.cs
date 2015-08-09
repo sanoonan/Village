@@ -7,7 +7,8 @@ public enum QuestAction
 {
     TALK_TO_NPC,
     ACQUIRE_ITEM,
-    GIVE_ITEM_TO_NPC
+    GIVE_ITEM_TO_NPC,
+    KILL_NPC,
 }
 
 public class QuestManager : MonoBehaviour
@@ -78,11 +79,37 @@ public class QuestManager : MonoBehaviour
         }
         if(anyQuestCompleted)
             QuestUIController.Instance.UpdateAllPages();
+
+        RemoveImpossibleQuests();
     }
 
-    private void CompleteQuest(System.Guid questId)
+    private void RemoveImpossibleQuests()
+    {
+        int numActiveQuests = activeQuests.Count;
+        List<KeyValuePair<System.Guid, QuestChain>> activeQuestPairs = activeQuests.ToList();
+
+        bool anyQuestImpossible = false;
+        for ( int i = 0; i < numActiveQuests; i++ )
+        {
+            if ( !activeQuestPairs[i].Value.IsPossible() )
+            {
+                anyQuestImpossible = true;
+                FailQuest( activeQuestPairs[i].Key );
+            }
+        }
+
+        if ( anyQuestImpossible )
+            QuestUIController.Instance.UpdateAllPages();
+    }
+
+    private void CompleteQuest( System.Guid questId )
     {
         activeQuests.Remove(questId);
+    }
+
+    private void FailQuest( System.Guid questId )
+    {
+        activeQuests.Remove( questId );
     }
 
 

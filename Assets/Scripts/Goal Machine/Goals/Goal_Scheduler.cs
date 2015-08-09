@@ -97,7 +97,7 @@ public class Goal_Scheduler : Goal_Composite
                 {
                     //This is a response message to a greeting message we sent to the sender.
                     Message.DispatchMessage(message.Receiver, message.Sender, TelegramType.MeetingRequest, false, Owner.Transform.position);
-                    AddSubgoal(new Goal_Conversation(Owner, (AgentManager.Instance.GetAgent(message.Sender).CognitiveAgent.Transform.position - Owner.Transform.position), new List<int>() { message.Receiver, message.Sender }, true, Owner.DesiredTopic));
+                    AddSubgoal(new Goal_Conversation(Owner, (AgentManager.Instance.GetAgent(message.Sender)._cognitiveAgent.Transform.position - Owner.Transform.position), new List<int>() { message.Receiver, message.Sender }, true, Owner.DesiredTopic));
                     return true;
                 }
                 else
@@ -114,7 +114,7 @@ public class Goal_Scheduler : Goal_Composite
                 RemoveAllSubgoals();
 
                 CharacterDetails traderDetails = AgentManager.Instance.GetAgent(message.Sender);
-                AgentInventory traderInventory = (traderDetails.IsPlayer ? traderDetails.PlayerAgent.Inventory : traderDetails.CognitiveAgent.Inventory);
+                AgentInventory traderInventory = (traderDetails.IsPlayer ? traderDetails.PlayerAgent.Inventory : traderDetails._cognitiveAgent.Inventory);
 
                 //Get equipped item from trader's inventory.
                 //See if cues of equipped item match the cue needed to satisfy the quest.

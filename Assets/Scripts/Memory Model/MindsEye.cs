@@ -322,7 +322,7 @@ public class MindsEye : MonoBehaviour
             if(participants[i] == ownerID)
                 continue;
             
-            MemoryGraph.CopyFromOtherGraph(AgentManager.Instance.GetAgent(participants[i]).CognitiveAgent, targetUID);
+            MemoryGraph.CopyFromOtherGraph(AgentManager.Instance.GetAgent(participants[i])._cognitiveAgent, targetUID);
         }
     }
 }

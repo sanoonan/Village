@@ -50,8 +50,7 @@ public class Goal_ManageShop : Goal_Atomic
 
         Owner.Transform.forward = (shopManager.eTransform.position - Owner.Transform.position).normalized;
 
-        Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
+        Owner._animationController.SetAnimation( CharacterState.Idle );
 
         base.Activate();
     }
@@ -65,8 +64,7 @@ public class Goal_ManageShop : Goal_Atomic
     {
         AddToThoughtBubble("Managing Shop");
 
-        Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
+        Owner._animationController.SetAnimation( CharacterState.Idle );
     }
 
     public override void Terminate()
@@ -137,8 +135,7 @@ public class Goal_BuyItem : Goal
 
         Owner.Transform.forward = (shopManager.cTransform.position - Owner.Transform.position).normalized;
 
-        Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
+        Owner._animationController.SetAnimation( CharacterState.Idle );
 
         if (shopManager.AttemptPurchase(Owner, itemUID))
             CurrentStatus = GoalStatus.Completed;
@@ -150,8 +147,7 @@ public class Goal_BuyItem : Goal
     {
         AddToThoughtBubble("Buying Item");
 
-        Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
+        Owner._animationController.SetAnimation( CharacterState.Idle );
     }
 
     public override GoalStatus Process()

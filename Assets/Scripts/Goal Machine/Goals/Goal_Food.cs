@@ -52,8 +52,7 @@ public class Goal_ConsumeFood : Goal_Atomic
     {
         AddToThoughtBubble("Munching...");
 
-        Owner.Animation[Owner.AnimationKeys["idle"]].speed = Owner.AnimationSpeed;
-        Owner.Animation.CrossFade(Owner.AnimationKeys["idle"]);
+        Owner._animationController.SetAnimation( CharacterState.Idle, Owner.AnimationSpeed );
     }
 
     public override GoalStatus Process()

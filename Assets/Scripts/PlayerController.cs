@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Animation Variables
-    internal float MoveSpeed = 0.0f;
-    internal float WalkSpeed = 2.0f;
-    internal float TrotSpeed = 4.0f;
-    internal float RunSpeed = 6.0f;
-
     internal Vector3 MoveDirection = Vector3.zero;
+
+    private float _moveSpeed = 0.0f;
+    private float _walkSpeed = 2.0f;
+    private float _trotSpeed = 4.0f;
+    private float _runSpeed = 6.0f;
 
     internal float RotateSpeed = 500.0f;
     internal float TrotAfterSeconds = 3.0f;
@@ -35,11 +35,9 @@ public class PlayerController : MonoBehaviour
 
     internal float SpeedSmoothing = 10.0f;
 
-    internal CharacterState CharacterState = CharacterState.Idle;
+    internal CharacterState _characterState = CharacterState.Idle;
     internal bool Running = false;
-
-    internal Dictionary<string, string> AnimationKeys;            //A lookup that compares generic animation names (i.e. run) to the corressponding animation name on the model (i.e. VB_RUN).
-    internal float AnimationSpeed = 1.0f;                                //How fast the animations should play.
+                         
     private bool isMoving;
     private bool movingBack;
     private float lockCameraTimer;
@@ -50,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController Instance;
 
+    public AnimationController _animationController;
+
     void Awake()
     {
         Instance = this;
@@ -58,19 +58,12 @@ public class PlayerController : MonoBehaviour
         Transform = GetComponent<Transform>();
 
         //Get our basic components.
-        Animation = GetComponent<Animation>();
         CharController = GetComponent<CharacterController>();
         CharDetails = GetComponent<CharacterDetails>();
 
-        MoveDirection = Transform.TransformDirection(Vector3.forward);  //Get their initial facing direction.
+        _animationController = GetComponent<AnimationController>();
 
-        //Add the basic animation info.
-        AnimationKeys = new Dictionary<string, string>();
-        AnimationKeys.Add("run", "VB_Run");
-        AnimationKeys.Add("walk", "VB_Walk");
-        AnimationKeys.Add("idle", "VB_Idle");
-        AnimationKeys.Add("greet", "VB_Greeting");
-        AnimationKeys.Add("talk", "VB_Talk");
+        MoveDirection = Transform.TransformDirection(Vector3.forward);  //Get their initial facing direction.
 
         Inventory = new AgentInventory(this);
     }
@@ -114,7 +107,7 @@ public class PlayerController : MonoBehaviour
         if (targetDirection != Vector3.zero)
         {
             // If we are really slow, just snap to the target direction
-            if (MoveSpeed < WalkSpeed * 0.9f)
+            if (_moveSpeed < _walkSpeed * 0.9f)
             {
                 MoveDirection = targetDirection.normalized;
             }
@@ -133,29 +126,29 @@ public class PlayerController : MonoBehaviour
         //We want to support analog input but make sure you can't walk faster diagonally than just forward or sideways
         float targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0f);
 
-        CharacterState = CharacterState.Idle;
+        
 
         // Pick speed modifier
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            targetSpeed *= RunSpeed;
-            CharacterState = CharacterState.Running;
+            targetSpeed *= _runSpeed;
+            _characterState = CharacterState.Running;
         }
         else if (Time.time - TrotAfterSeconds > WalkTimeStart)
         {
-            targetSpeed *= TrotSpeed;
-            CharacterState = CharacterState.Trotting;
+            targetSpeed *= _trotSpeed;
+            _characterState = CharacterState.Trotting;
         }
         else
         {
-            targetSpeed *= WalkSpeed;
-            CharacterState = CharacterState.Walking;
+            targetSpeed *= _walkSpeed;
+     //       _characterState = CharacterState.Walking;
         }
 
-        MoveSpeed = Mathf.Lerp(MoveSpeed, targetSpeed, curSmooth);
+        _moveSpeed = Mathf.Lerp( _moveSpeed, targetSpeed, curSmooth );
 
         // Reset walk time start when we slow down
-        if (MoveSpeed < WalkSpeed * 0.3f)
+        if ( _moveSpeed < _walkSpeed * 0.3f )
             WalkTimeStart = Time.time;
 
         if (IsGrounded())
@@ -164,31 +157,29 @@ public class PlayerController : MonoBehaviour
             verticalSpeed -= gravity * Time.deltaTime;
 
         // Calculate actual motion
-        movement = MoveDirection * MoveSpeed + new Vector3(0.0f, verticalSpeed, 0.0f);
+        movement = MoveDirection * _moveSpeed + new Vector3( 0.0f, verticalSpeed, 0.0f );
         movement *= Time.deltaTime;
 
         // Move the controller
         collisionFlags = CharController.Move(movement);
 
-        if (CharController.velocity.sqrMagnitude < 0.1f)
-            Animation.CrossFade(AnimationKeys["idle"]);
+        if ( CharController.velocity.sqrMagnitude < 0.1f )
+        {
+            if ( _characterState != CharacterState.Attacking )
+            {
+                _characterState = CharacterState.Idle;
+            }
+
+            _animationController.SetAnimation( _characterState );
+        }
         else
         {
-            if (CharacterState == CharacterState.Running)
+            if ( ( _characterState != CharacterState.Running ) && ( _characterState != CharacterState.Trotting ) )
             {
-                Animation[AnimationKeys["run"]].speed = Mathf.Clamp(CharController.velocity.magnitude, 0.0f, AnimationSpeed);
-                Animation.CrossFade(AnimationKeys["run"]);
+                _characterState = CharacterState.Walking;
             }
-            else if (CharacterState == CharacterState.Trotting)
-            {
-                Animation[AnimationKeys["walk"]].speed = Mathf.Clamp(CharController.velocity.magnitude, 0.0f, AnimationSpeed);
-                Animation.CrossFade(AnimationKeys["walk"]);
-            }
-            else if (CharacterState == CharacterState.Walking)
-            {
-                Animation[AnimationKeys["walk"]].speed = Mathf.Clamp(CharController.velocity.magnitude, 0.0f, AnimationSpeed * 0.75f);
-                Animation.CrossFade(AnimationKeys["walk"]);
-            }
+
+            _animationController.SetAnimation( _characterState, CharController.velocity.magnitude );
         }
 
         if(IsGrounded())
@@ -229,20 +220,7 @@ public class PlayerController : MonoBehaviour
             Inventory.DropCurrentItem();
         else if(Input.GetKeyDown(KeyCode.KeypadPlus))
         {
-            CharacterCue closestChar = null;
-            float closestDist = float.MaxValue;
-            foreach (var entry in MindsEye.ActiveCues)
-            {
-                if (entry.Value.CueType == CueType.Character)
-                {
-                    CharacterCue charCue = (CharacterCue)entry.Value;
-                    if(/*charCue.CharDetails.CognitiveAgent.HasQuest && */Vector3.Distance(Transform.position, entry.Value.CachedTransform.position) < closestDist)
-                    {
-                        closestChar = charCue;
-                        closestDist = Vector3.Distance(Transform.position, entry.Value.CachedTransform.position);
-                    }
-                }
-            }
+            CharacterCue closestChar = GetClosestCharacter();
 
 //            if (closestChar != null)
  //               Message.DispatchMessage(CharDetails.AgentID, closestChar.CharDetails.AgentID, TelegramType.QuestTrade);
@@ -255,20 +233,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.KeypadMultiply))
         {
-            CharacterCue closestChar = null;
-            float closestDist = float.MaxValue;
-            foreach (var entry in MindsEye.ActiveCues)
-            {
-                if (entry.Value.CueType == CueType.Character)
-                {
-                    CharacterCue charCue = (CharacterCue)entry.Value;
-                    if (Vector3.Distance(Transform.position, entry.Value.CachedTransform.position) < closestDist)
-                    {
-                        closestChar = charCue;
-                        closestDist = Vector3.Distance(Transform.position, entry.Value.CachedTransform.position);
-                    }
-                }
-            }
+            CharacterCue closestChar = GetClosestCharacter();
 
             if (closestChar != null)
 			{
@@ -277,6 +242,10 @@ public class PlayerController : MonoBehaviour
                 _conversationNPC = closestChar;
                 StartCoroutine( ConversationCoroutine() );
 			}
+        }
+        else if( Input.GetKeyDown( KeyCode.KeypadDivide ) )
+        {
+            StartCoroutine( AttackCoroutine() );
         }
     }
 
@@ -381,5 +350,53 @@ public class PlayerController : MonoBehaviour
     public void ConversationResponse()
     {
         _conversationComplete = true;
+    }
+
+    private CharacterCue GetClosestCharacter()
+    {
+        CharacterCue closestChar = null;
+        float closestDist = 2.0f;
+        foreach ( var entry in MindsEye.ActiveCues )
+        {
+            if ( entry.Value.CueType == CueType.Character )
+            {
+                CharacterCue charCue = ( CharacterCue )entry.Value;
+
+                if( !charCue.CharDetails.IsAlive() )
+                    continue;
+
+                if ( Vector3.Distance( Transform.position, entry.Value.CachedTransform.position ) < closestDist )
+                {
+                    closestChar = charCue;
+                    closestDist = Vector3.Distance( Transform.position, entry.Value.CachedTransform.position );
+                }
+            }
+        }
+        return closestChar;
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        if ( _characterState == CharacterState.Attacking )
+            yield break;
+
+        _characterState = CharacterState.Attacking;
+
+        CharacterCue closestChar = GetClosestCharacter();
+        if ( closestChar != null )
+        {
+            QuestManager.Instance.AttemptToComplete( new QFCD_KillNPC( closestChar.GetAgentId() ) );
+            closestChar.CharDetails._cognitiveAgent.Die();
+        }
+
+        while ( true )
+        {
+            if ( ( Input.GetKeyUp( KeyCode.KeypadDivide ) ) || ( _characterState != CharacterState.Attacking ) )
+            {
+                _characterState = CharacterState.Idle;
+                yield break;
+            }
+            yield return null;
+        }
     }
 }
