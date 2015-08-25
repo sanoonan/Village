@@ -13,12 +13,12 @@ public class QuestUIPage
     public QuestUIPage(System.Guid questId)
     {
         questChainId = questId;
-        Update();
+        UpdatePage();
     }
 
-    public void Update()
+    public void UpdatePage()
     {
-        QuestChain questChain = QuestManager.Instance.GetQuestById(questChainId);
+        QuestPattern questChain = QuestManager.Instance.GetQuestById(questChainId);
         if (questChain == null)
         {
             Debug.Log("Quest chain does not exist");
@@ -28,7 +28,7 @@ public class QuestUIPage
 
         questChainText = questChain.GetDescription();
 
-        List<QuestFragment> activeQuestFragments = questChain.GetActiveFragments();
+        List<QuestPoint> activeQuestFragments = questChain.GetActivePoints();
         numFragmentTexts = activeQuestFragments.Count;
 
         questFragmentsText = new List<string>();

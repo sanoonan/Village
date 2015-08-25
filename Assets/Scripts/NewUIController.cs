@@ -53,9 +53,9 @@ public class NewUIController : MonoBehaviour
         EnableItemButtons(NPCname, itemName);
     }
 
-    public void InitConversationUI( string npcName )
+    public void InitConversationUI( string npcName, bool isQuest = false )
     {
-        EnableConversationPanel( npcName );
+        EnableConversationPanel( npcName, isQuest );
     }
 
 
@@ -87,11 +87,22 @@ public class NewUIController : MonoBehaviour
 
 
 
-    private void EnableConversationPanel( string NPCname )
+    private void EnableConversationPanel( string NPCname, bool isQuest)
     {
         GameObject npcNameTextObject = _conversationPanel.transform.FindChild( "NpcName" ).gameObject;
         Text npcNameText = npcNameTextObject.GetComponent<Text>();
         npcNameText.text = NPCname;
+
+        GameObject dialogueTextObject = _conversationPanel.transform.FindChild( "Dialogue" ).gameObject;
+        Text dialogueText = dialogueTextObject.GetComponent<Text>();
+        if ( isQuest )
+        {
+            dialogueText.text = "I have a quest for you";
+        }
+        else
+        {
+            dialogueText.text = "Hello";
+        }
 
         _conversationPanel.SetActive( true );
     }

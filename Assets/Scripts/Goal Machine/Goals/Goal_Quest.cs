@@ -56,7 +56,7 @@ public class Goal_Quest : Goal_Composite
             RemoveAllSubgoals();
 
             CharacterDetails traderDetails = AgentManager.Instance.GetAgent(message.Sender);
-            AgentInventory traderInventory = (traderDetails.IsPlayer ? traderDetails.PlayerAgent.Inventory : traderDetails._cognitiveAgent.Inventory);
+            AgentInventory traderInventory = (traderDetails._isPlayer ? traderDetails.PlayerAgent.Inventory : traderDetails._cognitiveAgent.Inventory);
 
             //Get equipped item from trader's inventory.
             //See if cues of equipped item match the cue needed to satisfy the quest.

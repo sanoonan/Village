@@ -182,9 +182,13 @@ public class CognitiveAgent : MonoBehaviour
         if (!StaticDemo)
         {
             if ( _useStateVector )
-                nextTask = stateVector.GetBestTask(curTask);
+            {
+                nextTask = stateVector.GetBestTask( curTask );
+            }
             else
-                nextTask = routine.GetCurrentTask(DaylightScript.GetCurrentTime());
+            {
+                nextTask = routine.GetCurrentTask( DaylightScript.GetCurrentTime() );
+            }
 
             if (curTask != nextTask)
             {

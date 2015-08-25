@@ -11,8 +11,18 @@ public class CharacterDetails : MonoBehaviour
     public PlayerController PlayerAgent;
     public CognitiveAgent _cognitiveAgent;
     public CharacterCue CharCue;
-    public bool IsPlayer;
+    public bool _isPlayer;
     private bool _isAlive = true;
+    private TraitsManager _traitsManager;
+    private RelationshipManager _relationshipsManager;
+    private StateVector _stateVector;
+
+    void Awake()
+    {
+        _traitsManager = gameObject.GetComponent<TraitsManager>();
+        _relationshipsManager = gameObject.GetComponent<RelationshipManager>();
+        _stateVector = gameObject.GetComponentInChildren<StateVector>();
+    }
 
 	// Use this for initialization
 	void Start () 
@@ -20,15 +30,16 @@ public class CharacterDetails : MonoBehaviour
         AgentID = AgentManager.Instance.AddAgent(this);     //Adds the agent to the manager so it can recieve messages, and gains its unique agent id.
 
         RelationshipManager relationshipManager = gameObject.GetComponent<RelationshipManager>();
-        if( relationshipManager != null )
-            relationshipManager.AssignMyId( AgentID );
-
-        if ( IsPlayer )
+        
+        if ( _isPlayer )
         {
             PlayerAgent = GetComponent<PlayerController>();
         }
         else
         {
+            if ( relationshipManager != null )
+                relationshipManager.AssignMyId( AgentID );
+
             _cognitiveAgent = GetComponent<CognitiveAgent>();
         }
 	}
@@ -36,11 +47,31 @@ public class CharacterDetails : MonoBehaviour
     public void Die()
     {
         _isAlive = false;
+
+        QuestGiver questGiver = gameObject.GetComponentInChildren<QuestGiver>();
+        questGiver.UpdateQuestPossibility();
+
         gameObject.SetActive( false );
     }
 
     public bool IsAlive()
     {
         return _isAlive;
+    }
+    public bool IsPlayer()
+    {
+        return _isPlayer;
+    }
+    public RelationshipManager GetRelationshipManager()
+    {
+        return _relationshipsManager;
+    }
+    public StateVector GetStateVector()
+    {
+        return _stateVector;
+    }
+    public TraitsManager GetTraitsManager()
+    {
+        return _traitsManager;
     }
 }

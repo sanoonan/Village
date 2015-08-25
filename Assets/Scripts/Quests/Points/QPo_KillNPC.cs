@@ -2,34 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class QF_TalkToNPC : QuestFragment
+public class QPo_KillNPC : QuestPoint
 {
     public int targetAgentId;
 
 
-    public QF_TalkToNPC(int agentId) 
+    public QPo_KillNPC( int agentId )
         : base()
     {
         targetAgentId = agentId;
     }
 
-    public QF_TalkToNPC(string agentName)
+    public QPo_KillNPC( string agentName )
         : base()
     {
-        targetAgentId = AgentManager.Instance.GetAgentIdByName(agentName);
+        targetAgentId = AgentManager.Instance.GetAgentIdByName( agentName );
     }
 
-    public override bool AttemptToComplete(QuestFragmentCompletionData data)  
+    public override bool AttemptToComplete( QuestPointCompletionData data )
     {
-        if (questAction != data.questAction)
+        if ( _questAction != data.questAction )
             return false;
 
-        QFCD_TalkToNPC specificData = data as QFCD_TalkToNPC;
+        QPoCD_KillNPC specificData = data as QPoCD_KillNPC;
 
-        if (specificData == null)
+        if ( specificData == null )
             return false;
 
-        if (targetAgentId == specificData.agentId)
+        if ( targetAgentId == specificData.agentId )
         {
             Complete();
             return true;
@@ -54,22 +54,22 @@ public class QF_TalkToNPC : QuestFragment
 
     protected override void SetQuestAction()
     {
-        questAction = QuestAction.TALK_TO_NPC;
+        _questAction = QuestAction.KILL_NPC;
     }
 
     public override void SetFragmentDescription()
     {
-        string agentName = AgentManager.Instance.GetAgentNameById(targetAgentId);
+        string agentName = AgentManager.Instance.GetAgentNameById( targetAgentId );
 
-        description = "Talk to " + agentName;
+        _description = "Kill " + agentName;
     }
 }
 
-public class QFCD_TalkToNPC : QuestFragmentCompletionData
+public class QPoCD_KillNPC : QuestPointCompletionData
 {
     public int agentId;
 
-    public QFCD_TalkToNPC(int id)
+    public QPoCD_KillNPC( int id )
         : base()
     {
         agentId = id;
@@ -77,6 +77,6 @@ public class QFCD_TalkToNPC : QuestFragmentCompletionData
 
     protected override void SetQuestAction()
     {
-        questAction = QuestAction.TALK_TO_NPC;
+        questAction = QuestAction.KILL_NPC;
     }
 }

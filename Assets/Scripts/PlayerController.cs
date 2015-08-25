@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour
                 if (itmCue.Status == ItemStatus.Free)
                 {
                     Inventory.PickupItem(itmCue, true);
-                    QuestManager.Instance.AttemptToComplete(new QFCD_AcquireItem(itmCue));
+                    QuestManager.Instance.AttemptToComplete(new QPoCD_AcquireItem(itmCue));
                 }                
             }
         }
@@ -313,7 +313,7 @@ public class PlayerController : MonoBehaviour
             _transferNPC.Inventory.PickupItem( transferItem, true );
 
             int NpcId = AgentManager.Instance.GetAgentIdByName( NPCname );
-            QuestManager.Instance.AttemptToComplete( new QFCD_GiveItemToNPC( NpcId, transferItem ) ); 
+            QuestManager.Instance.AttemptToComplete( new QPoCD_GiveItemToNPC( NpcId, transferItem ) ); 
         }
 
 		Time.timeScale = originalTimeScale;
@@ -334,15 +334,25 @@ public class PlayerController : MonoBehaviour
         
         _conversationComplete = false;
         string NPCname = _conversationNPC.GetNameOfEntity();
-        NewUIController.Instance.InitConversationUI( NPCname );
+        int NpcId = AgentManager.Instance.GetAgentIdByName( NPCname );
+
+        CharacterDetails npcCharDetails = AgentManager.Instance.GetAgent( NpcId );
+        QuestGiver npcQuestGiver = npcCharDetails.gameObject.GetComponentInChildren<QuestGiver>();
+        bool npcHasQuest = npcQuestGiver.HasQuest();
+
+        NewUIController.Instance.InitConversationUI( NPCname, npcHasQuest );
         
         while (!_conversationComplete)
         {
             yield return null;
         }
+        
+        QuestManager.Instance.AttemptToComplete( new QPoCD_TalkToNPC( NpcId ) );
 
-        int NpcId = AgentManager.Instance.GetAgentIdByName( NPCname );
-        QuestManager.Instance.AttemptToComplete( new QFCD_TalkToNPC( NpcId ) );
+        if ( npcHasQuest )
+        {
+            QuestManager.Instance.AddActiveQuest( npcQuestGiver.GetQuest() );
+        }
 
         Time.timeScale = originalTimeScale;
     }
@@ -355,7 +365,7 @@ public class PlayerController : MonoBehaviour
     private CharacterCue GetClosestCharacter()
     {
         CharacterCue closestChar = null;
-        float closestDist = 2.0f;
+        float closestDist = 10.0f;
         foreach ( var entry in MindsEye.ActiveCues )
         {
             if ( entry.Value.CueType == CueType.Character )
@@ -385,7 +395,7 @@ public class PlayerController : MonoBehaviour
         CharacterCue closestChar = GetClosestCharacter();
         if ( closestChar != null )
         {
-            QuestManager.Instance.AttemptToComplete( new QFCD_KillNPC( closestChar.GetAgentId() ) );
+            QuestManager.Instance.AttemptToComplete( new QPoCD_KillNPC( closestChar.GetAgentId() ) );
             closestChar.CharDetails._cognitiveAgent.Die();
         }
 

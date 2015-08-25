@@ -7,33 +7,34 @@ public class QuestUIController : MonoBehaviour
 {
     public static QuestUIController Instance;
 
-    public GameObject openQuestLogButton;
-    public GameObject closeQuestLogButton;
+    public GameObject _openQuestLogButton;
+    public GameObject _closeQuestLogButton;
 
-    public GameObject questLogPanel;
+    public GameObject _questLogPanel;
 
-    public GameObject addSampleQuestButton;
+    public GameObject _addSampleQuestButton;
 
-    public GameObject questChainTextPrefab;
-    public GameObject questFragmentTextPrefab;
+    public GameObject _questPatternTextPrefab;
+    public GameObject _questPointTextPrefab;
 
-    private List<GameObject> questFragmentTextObjects;
+    private List<GameObject> _questPointTextObjects;
 
-    public GameObject questUIPanel;
 
-    private List<QuestUIPage> questPages;
-    private int numPages;
-    private int currentPage;
+    private List<QuestUIPage> _questPages;
+    private int _numPages;
+    private int _currentPage;
+
+    private bool _noActiveQuests = true;
 
     void Awake()
     {
         Instance = this;
-        questPages = new List<QuestUIPage>();
-        numPages = 0;
-        currentPage = -1;
+        _questPages = new List<QuestUIPage>();
+        _numPages = 0;
+        _currentPage = -1;
 
-        questFragmentTextObjects = new List<GameObject>();
-        questFragmentTextObjects.Add(questFragmentTextPrefab);
+        _questPointTextObjects = new List<GameObject>();
+        _questPointTextObjects.Add(_questPointTextPrefab);
     }
 
 
@@ -52,121 +53,136 @@ public class QuestUIController : MonoBehaviour
 
     public void OpenQuestLog()
     {
-        openQuestLogButton.SetActive(false);
-        closeQuestLogButton.SetActive(true);
-        questLogPanel.SetActive(true);
+        _openQuestLogButton.SetActive(false);
+        _closeQuestLogButton.SetActive(true);
+        _questLogPanel.SetActive(true);
     }
 
     public void CloseQuestLog()
     {
-        openQuestLogButton.SetActive(true);
-        closeQuestLogButton.SetActive(false);
-        questLogPanel.SetActive(false);
+        _openQuestLogButton.SetActive(true);
+        _closeQuestLogButton.SetActive(false);
+        _questLogPanel.SetActive(false);
     }
 
     public void NextQuestInLog()
     {
-        currentPage++;
+        if ( _noActiveQuests )
+        {
+            _currentPage = -1;
+        }
+        else
+        {
+            _currentPage++;
 
-        if (currentPage >= numPages)
-            currentPage = 0;
-
-        SetCurrentPage(currentPage);
+            if ( _currentPage >= _numPages )
+                _currentPage = 0;
+        }
+        
+        SetCurrentPage(_currentPage);
     }
 
     public void PrevQuestInLog()
     {
-        currentPage--;
+        _currentPage--;
 
-        if (currentPage < 0)
-            currentPage = numPages - 1;
+        if (_currentPage < 0)
+            _currentPage = _numPages - 1;
 
-        SetCurrentPage(currentPage);
+        SetCurrentPage(_currentPage);
     }
 
 
     public void AddQuest(System.Guid questId)
     {
-        questPages.Add(new QuestUIPage(questId));
-        numPages++;
+        _questPages.Add(new QuestUIPage(questId));
+        _numPages++;
 
-        if ( currentPage < 0 )
+        _noActiveQuests = false;
+
+        if ( _currentPage < 0 )
         {
-            currentPage = 0;
-            SetCurrentPage(currentPage);
+            _currentPage = 0;
+            SetCurrentPage(_currentPage);
         }
     }
 
     private void SetCurrentPage(int pageNum)
     {
-        if (pageNum > numPages)
+        if (pageNum > _numPages)
         {
-            Debug.LogError("Cannot get page number " + pageNum + ", there are only " + numPages + " pages");
+            Debug.LogError("Cannot get page number " + pageNum + ", there are only " + _numPages + " pages");
             return;
         }
 
-		if(currentPage < 0 )
+		if( _noActiveQuests )
 		{
 			SetNoActiveQuestsPage();
 			return;
 		}
 
-        currentPage = pageNum;
+        _currentPage = pageNum;
 
-        Text questChainText = questChainTextPrefab.GetComponent<Text>();
-        questChainText.text = questPages[pageNum].GetQuestChainText();
+        Text questChainText = _questPatternTextPrefab.GetComponent<Text>();
+        questChainText.text = _questPages[pageNum].GetQuestChainText();
 
-        int numFrags = questPages[pageNum].GetNumQuestFragmentTexts();
+        int numFrags = _questPages[pageNum].GetNumQuestFragmentTexts();
 
         
-        while (numFrags < questFragmentTextObjects.Count)
+        while (numFrags < _questPointTextObjects.Count)
         {
-            GameObject newQuestFragmentTextObject = GameObject.Instantiate(questFragmentTextObjects[questFragmentTextObjects.Count - 1]);
+            GameObject newQuestFragmentTextObject = GameObject.Instantiate(_questPointTextObjects[_questPointTextObjects.Count - 1]);
             newQuestFragmentTextObject.transform.localPosition += new Vector3(0.0f, -20.0f, 0.0f);
-            questFragmentTextObjects.Add(newQuestFragmentTextObject);
+            _questPointTextObjects.Add(newQuestFragmentTextObject);
         }
 
-        for (int i = 0; i < questFragmentTextObjects.Count; i++)
+        for (int i = 0; i < _questPointTextObjects.Count; i++)
         {
             if (i < numFrags)
             {
-                questFragmentTextObjects[i].SetActive(true);
+                _questPointTextObjects[i].SetActive(true);
 
-                Text questFragmentText = questFragmentTextObjects[i].GetComponent<Text>();
-                questFragmentText.text = questPages[pageNum].GetQuestFragmentByNum(i);
+                Text questFragmentText = _questPointTextObjects[i].GetComponent<Text>();
+                questFragmentText.text = _questPages[pageNum].GetQuestFragmentByNum(i);
             }
             else
-                questFragmentTextObjects[i].SetActive(false);
+                _questPointTextObjects[i].SetActive(false);
         }
     }
 
     private void SetNoActiveQuestsPage()
     {
-        Text questChainText = questChainTextPrefab.GetComponent<Text>();
+        Text questChainText = _questPatternTextPrefab.GetComponent<Text>();
         questChainText.text = "No Active Quests";
 
-        for (int i = 0; i < questFragmentTextObjects.Count; i++)
-            questFragmentTextObjects[i].SetActive(false);
+        for (int i = 0; i < _questPointTextObjects.Count; i++)
+            _questPointTextObjects[i].SetActive(false);
     }
 
     public void AddSampleQuest()
     {
-        QuestManager.Instance.AddActiveQuest(new QC_KillNpcAndReportToQuestGiver("Senel", "Lloyd"));
+        QuestManager.Instance.AddQuestToQuestGiver(new QPa_KillNpcAndReportToNpc("Senel", "Lloyd", "Senel" ));
     }
 
     public void UpdateAllPages()
     {
-        for (int i = 0; i < numPages; i++)
-            questPages[i].Update();
+        for (int i = 0; i < _numPages; i++)
+            _questPages[i].UpdatePage();
 
-        SetCurrentPage(currentPage);
+        SetCurrentPage(_currentPage);
     }
 
     public void RemoveQuestPage(QuestUIPage page)
     {
-		int removedPageNum = questPages.IndexOf( page );
-        questPages.Remove(page);
-		if( currentPage == removedPageNum )
-			currentPage--;
+		int removedPageNum = _questPages.IndexOf( page );
+        _questPages.Remove(page);
+
+        _numPages--;
+
+		if( _currentPage == removedPageNum )
+			_currentPage--;
+
+        if ( _currentPage < 0 )
+            _noActiveQuests = true;
     }
 }

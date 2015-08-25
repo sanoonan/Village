@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class QF_AcquireItem : QuestFragment
+public class QPo_AcquireItem : QuestPoint
 {
     private string targetItemMarker;
 
 
-    public QF_AcquireItem(string itemMarker)
+    public QPo_AcquireItem(string itemMarker)
         : base()
     {
         targetItemMarker = itemMarker;
@@ -15,12 +15,12 @@ public class QF_AcquireItem : QuestFragment
 
 
 
-    public override bool AttemptToComplete(QuestFragmentCompletionData data)
+    public override bool AttemptToComplete(QuestPointCompletionData data)
     {
-        if (questAction != data.questAction)
+        if (_questAction != data.questAction)
             return false;
 
-        QFCD_AcquireItem specificData = data as QFCD_AcquireItem;
+        QPoCD_AcquireItem specificData = data as QPoCD_AcquireItem;
 
         if (specificData == null)
             return false;
@@ -55,21 +55,21 @@ public class QF_AcquireItem : QuestFragment
 
     protected override void SetQuestAction()
     {
-        questAction = QuestAction.ACQUIRE_ITEM;
+        _questAction = QuestAction.ACQUIRE_ITEM;
     }
 
     public override void SetFragmentDescription()
     {
-        description = "Acquire a " + targetItemMarker;
+        _description = "Acquire a " + targetItemMarker;
     }
 
 }
 
-public class QFCD_AcquireItem : QuestFragmentCompletionData
+public class QPoCD_AcquireItem : QuestPointCompletionData
 {
     public ItemCue itemCue;
 
-    public QFCD_AcquireItem(ItemCue _itemCue) 
+    public QPoCD_AcquireItem(ItemCue _itemCue) 
         : base()
     {
         itemCue = _itemCue;

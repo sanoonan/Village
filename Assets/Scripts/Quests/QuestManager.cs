@@ -15,13 +15,14 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance;   
 
-    public Dictionary<System.Guid, QuestChain> activeQuests;
-
+    public Dictionary<System.Guid, QuestPattern> _activeQuests;
+    private int _numAvailableQuests = 0;
 
     void Awake()
     {
         Instance = this;
-        activeQuests = new Dictionary<System.Guid, QuestChain>();
+        _activeQuests = new Dictionary<System.Guid, QuestPattern>();
+        _numAvailableQuests = 0;
     }
 
     void Start()
@@ -36,34 +37,55 @@ public class QuestManager : MonoBehaviour
     {
     }
 
-    public void AddActiveQuest(QuestChain questChain)
+    public void AddQuestToQuestGiver( QuestPattern questPattern )
+    {
+        QuestGiver questGiver = GetQuestGiverComponentByAgentId( questPattern.GetQuestGiverId() );
+        questGiver.SetQuest( questPattern );
+        _numAvailableQuests++;
+    }
+
+    public void QuestRemovedFromQuestGiver()
+    {
+        _numAvailableQuests--;
+    }
+
+    public void AddActiveQuest(QuestPattern questPattern)
     {
         System.Guid uniqueId = System.Guid.NewGuid();
-        activeQuests.Add(uniqueId, questChain);
+        _activeQuests.Add(uniqueId, questPattern);
 
         QuestUIController.Instance.AddQuest(uniqueId);
 
-        if (questChain.AttemptImmediateCompletion())
+        if (questPattern.AttemptImmediateCompletion())
         {
-            if (questChain.IsComplete())
+            if (questPattern.IsComplete())
                 CompleteQuest(uniqueId);
 
             QuestUIController.Instance.UpdateAllPages();
         }
     }
 
-    public QuestChain GetQuestById(System.Guid questId)
+    public int GetNumActiveQuests()
     {
-        QuestChain questChain = null;
-        activeQuests.TryGetValue(questId, out questChain);
+        return _activeQuests.Count;
+    }
+    public int GetNumAvailableQuests()
+    {
+        return _numAvailableQuests;
+    }
+
+    public QuestPattern GetQuestById(System.Guid questId)
+    {
+        QuestPattern questChain = null;
+        _activeQuests.TryGetValue(questId, out questChain);
         return questChain;
     }
 
-    public void AttemptToComplete(QuestFragmentCompletionData data)
+    public void AttemptToComplete(QuestPointCompletionData data)
     {
-        int numActiveQuests = activeQuests.Count;
+        int numActiveQuests = _activeQuests.Count;
 
-        List<KeyValuePair<System.Guid, QuestChain>> activeQuestPairs = activeQuests.ToList();
+        List<KeyValuePair<System.Guid, QuestPattern>> activeQuestPairs = _activeQuests.ToList();
 
         bool anyQuestCompleted = false;
 
@@ -85,8 +107,8 @@ public class QuestManager : MonoBehaviour
 
     private void RemoveImpossibleQuests()
     {
-        int numActiveQuests = activeQuests.Count;
-        List<KeyValuePair<System.Guid, QuestChain>> activeQuestPairs = activeQuests.ToList();
+        int numActiveQuests = _activeQuests.Count;
+        List<KeyValuePair<System.Guid, QuestPattern>> activeQuestPairs = _activeQuests.ToList();
 
         bool anyQuestImpossible = false;
         for ( int i = 0; i < numActiveQuests; i++ )
@@ -100,20 +122,42 @@ public class QuestManager : MonoBehaviour
 
         if ( anyQuestImpossible )
             QuestUIController.Instance.UpdateAllPages();
+
+        AgentManager.Instance.UpdateQuestGiversPossibility();
     }
 
     private void CompleteQuest( System.Guid questId )
     {
-        activeQuests.Remove(questId);
+        QuestPattern questPattern = GetQuestById( questId );
+        QuestGiver questGiver = GetQuestGiverComponentByAgentId( questPattern.GetQuestGiverId() );
+        questGiver.CompleteWaitingQuest();
+
+        RemoveActiveQuest( questId );
     }
 
     private void FailQuest( System.Guid questId )
     {
-        activeQuests.Remove( questId );
+        QuestPattern questPattern = GetQuestById( questId );
+        QuestGiver questGiver = GetQuestGiverComponentByAgentId( questPattern.GetQuestGiverId() );
+        questGiver.FailWaitingQuest();
+
+        RemoveActiveQuest( questId );
     }
 
+    private void RemoveActiveQuest( System.Guid questId )
+    {
+        _activeQuests.Remove( questId );
+    }
 
+    private QuestGiver GetQuestGiverComponentByAgentId( int id )
+    {
+        CharacterDetails questGiverDetails = AgentManager.Instance.GetAgent( id );
+        QuestGiver questGiver = questGiverDetails.gameObject.GetComponentInChildren<QuestGiver>();
+
+        if ( questGiver == null )
+            Debug.LogError( "ERROR: " + questGiverDetails.gameObject.name + " does not have an attached quest giver component" );
+
+        return questGiver;
+    }
   
-
-   
 }

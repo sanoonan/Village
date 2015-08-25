@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 enum Restriction
 {
-    Positive, 
+    Positive = 0, 
     Negative,
     NonPositive,
     NonNegative,
@@ -13,7 +13,7 @@ enum Restriction
 
 
 
-public class StateVectorModification : MonoBehaviour
+public class StateVectorModifer : MonoBehaviour
 {
     private Dictionary<State, Dictionary<Task, Restriction>> _restrictedStateTasks;
     private int _numTasks;
@@ -146,15 +146,15 @@ public class StateVectorModification : MonoBehaviour
         dictionary.Add( task, restriction );
     }
 
-    public float[] SetupThresholds()
+    public float[] SetupThresholdVector()
     {
-        float[] thresholdValues = new float[_numStates];
+        float[] thresholdVector = new float[_numStates];
 
         for ( int i = 0; i < _numStates; i++ )
         {
-            thresholdValues[i] = ( int )Random.Range( _minThresholdValue, _maxValue );
+            thresholdVector[i] = ( int )Random.Range( _minThresholdValue, _maxValue );
         }
-        return thresholdValues;
+        return thresholdVector;
     }
 
 

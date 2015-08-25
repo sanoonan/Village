@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum Traits
+public enum Trait
 {
     Aggressiveness,
     Niceness,
@@ -24,10 +24,10 @@ public class TraitsManager : MonoBehaviour
     
     void Start()
     {
-        _numTraits = ( ( int[] )System.Enum.GetValues( typeof( Traits ) ) ).Length;
+        _numTraits = ( ( int[] )System.Enum.GetValues( typeof( Trait ) ) ).Length;
         _traitValues = new int[ _numTraits ];
 
-        NeutraliseAllTraits();
+        AssignRandomTraits();
     }
         
 
@@ -39,27 +39,27 @@ public class TraitsManager : MonoBehaviour
         }
     }
     
-    public int GetTraitValue( Traits trait )
+    public int GetTraitValue( Trait trait )
     {
         return _traitValues[ (int) trait ];
     } 
     
-   public void ModifyTraitValue( Traits trait, int modification )
+   public void ModifyTraitValue( Trait trait, int modification )
    {
         _traitValues[ (int) trait ] += modification;
         _traitValues[ (int) trait ] = Mathf.Clamp( _traitValues[ (int)trait ], _minValue, _maxValue );
    }  
    
-   public void SetTraitValue( Traits trait, int value )
+   public void SetTraitValue( Trait trait, int value )
    {
         _traitValues[ (int)trait ] = value;
    } 
 
-    public void NeutraliseTraitValue( Traits trait )
+    public void NeutraliseTraitValue( Trait trait )
     {
         _traitValues[ (int)trait ] = _neutralValue;
     }
-    public void RandomiseTraitValue( Traits trait )
+    public void RandomiseTraitValue( Trait trait )
     {
         _traitValues[ (int) trait ] = Random.Range( _minValue, _maxValue + 1 );
     }

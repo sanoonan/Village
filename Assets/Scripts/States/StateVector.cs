@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public enum State
 {
-    Mood,
+    Mood = 0,
     Energy,
     Satedness
 };
@@ -28,7 +28,7 @@ public class StateVector : MonoBehaviour
     private bool _hasModVector = false;
     private float[] _currentModVector;
 
-    private float[] _thresholdValues;
+    private float[] _thresholdVector;
 
     public float _updateFrequency = 15.0f; //updates every 15 minutes
     public float _giveUpTime = 30.0f;
@@ -38,18 +38,18 @@ public class StateVector : MonoBehaviour
     private bool _readyForTaskChange = false;
     private bool _mustTaskChange = false;
 
-    private StateVectorModification _stateVectorModification;
+    private StateVectorModifer _stateVectorModifier;
 
     void Awake()
     {
-        _stateVectorModification = gameObject.GetComponent<StateVectorModification>();
+        _stateVectorModifier = gameObject.GetComponent<StateVectorModifer>();
 
         InitCurrentStateVector();
     }
 
     void Start()
     {
-        _thresholdValues = _stateVectorModification.SetupThresholds();
+        _thresholdVector = _stateVectorModifier.SetupThresholdVector();
     }
 
     void Update()
@@ -61,9 +61,14 @@ public class StateVector : MonoBehaviour
             if ( ( _hasModVector ) || ( timePassedSinceUpdate >= _giveUpTime ) )
             {
                 if ( timePassedSinceUpdate >= _giveUpTime )
+                {
                     _mustTaskChange = true;
-                else
+                }
+                
+                if( _hasModVector )
+                {
                     ApplyModification( timePassedSinceUpdate );
+                }
 
 
                 _readyForTaskChange = true;
@@ -119,7 +124,7 @@ public class StateVector : MonoBehaviour
             if( ( _mustTaskChange ) && ( currentTask == (Task)i ) )
                 continue;
 
-            float[] taskSmv = _stateVectorModification.GetStateModificationVector( ( Task )i );
+            float[] taskSmv = _stateVectorModifier.GetStateModificationVector( ( Task )i );
             float[] taskModifiedStateVector = GetModifiedStateVector( taskSmv );
             float taskDeltaSum = GetDeltaSum( taskModifiedStateVector );
 
@@ -181,7 +186,7 @@ public class StateVector : MonoBehaviour
 
     public void StartModification( Task task )
     {
-        float[] modVector = _stateVectorModification.GetStateModificationVector( task );
+        float[] modVector = _stateVectorModifier.GetStateModificationVector( task );
 
         _currentModVector = modVector;
         _hasModVector = true;
@@ -287,7 +292,7 @@ public class StateVector : MonoBehaviour
 
     private float GetDelta( int stateNum, float value )
     {
-        float threshold = _thresholdValues[stateNum];
+        float threshold = _thresholdVector[stateNum];
 
         if ( value < threshold )
         {
@@ -308,5 +313,18 @@ public class StateVector : MonoBehaviour
             diffTime += 24 * 60;
 
         return diffTime;
+    }
+
+    public float GetStateValue( State state )
+    {
+        return _currentStateVector[( int )state];
+    }
+    public bool IsStateValueBelowThreshold( State state )
+    {
+        int stateNum = (int)state;
+        if ( _currentStateVector[stateNum] < _thresholdVector[stateNum] )
+            return true;
+
+        return false;
     }
 }

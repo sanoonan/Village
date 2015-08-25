@@ -149,8 +149,6 @@ public abstract class Goal_Composite : Goal
                 statusOfSubGoal = GoalStatus.Failed;
 
             Goal poppedGoal = subGoals.Pop();
-            if (Owner._useStateVector)
-                Debug.Log("newflynn");
             poppedGoal.Terminate();
             if(subGoals.Count > 0)
                 subGoals.Peek().Reactivate();   //This allows for special commands that might need executed after a sub-goal takes main control again.

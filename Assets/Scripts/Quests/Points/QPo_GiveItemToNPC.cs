@@ -2,32 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class QF_GiveItemToNPC : QuestFragment
+public class QPo_GiveItemToNPC : QuestPoint
 {
     private int targetAgentId;
     private string targetItemMarker;
 
 
-    public QF_GiveItemToNPC(int agentId, string itemMarker)
+    public QPo_GiveItemToNPC(int agentId, string itemMarker)
         : base()
     {
         targetAgentId = agentId;
         targetItemMarker = itemMarker;
     }
 
-    public QF_GiveItemToNPC(string agentName, string itemMarker)
+    public QPo_GiveItemToNPC(string agentName, string itemMarker)
         : base()
     {
         targetAgentId = AgentManager.Instance.GetAgentIdByName(agentName);
         targetItemMarker = itemMarker;
     }
 
-    public override bool AttemptToComplete(QuestFragmentCompletionData data)
+    public override bool AttemptToComplete(QuestPointCompletionData data)
     {
-        if (questAction != data.questAction)
+        if (_questAction != data.questAction)
             return false;
 
-        QFCD_GiveItemToNPC specificData = data as QFCD_GiveItemToNPC;
+        QPoCD_GiveItemToNPC specificData = data as QPoCD_GiveItemToNPC;
 
         if (specificData == null)
             return false;
@@ -57,24 +57,24 @@ public class QF_GiveItemToNPC : QuestFragment
 
     protected override void SetQuestAction()
     {
-        questAction = QuestAction.GIVE_ITEM_TO_NPC;
+        _questAction = QuestAction.GIVE_ITEM_TO_NPC;
     }
 
     public override void SetFragmentDescription()
     {
         string agentName = AgentManager.Instance.GetAgentNameById(targetAgentId);
 
-        description = "Give a " + targetItemMarker + "to " + agentName;
+        _description = "Give a " + targetItemMarker + "to " + agentName;
     }
 
 }
 
-public class QFCD_GiveItemToNPC : QuestFragmentCompletionData
+public class QPoCD_GiveItemToNPC : QuestPointCompletionData
 {
     public int agentId;
     public ItemCue itemCue;
 
-    public QFCD_GiveItemToNPC(int _agentId, ItemCue _itemCue)
+    public QPoCD_GiveItemToNPC(int _agentId, ItemCue _itemCue)
         : base()
     {
         agentId = _agentId;

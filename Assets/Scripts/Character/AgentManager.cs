@@ -30,6 +30,9 @@ public class AgentManager : MonoBehaviour
 
     public int AddAgent(CharacterDetails agent)
 	{
+        if ( agent.IsPlayer() )
+            return -1;
+
 		agents.Add(agent);
 		return agents.size - 1;
 	}
@@ -78,7 +81,7 @@ public class AgentManager : MonoBehaviour
             //    Debug.Log(agents[i].CognitiveAgent.CharacterCue.UniqueNodeID);
             //}
 
-            if (!agents[i].IsPlayer && agents[i]._cognitiveAgent.CharacterCue.UniqueNodeID == targetUID)
+            if (!agents[i]._isPlayer && agents[i]._cognitiveAgent.CharacterCue.UniqueNodeID == targetUID)
                 return agents[i];
         }
 
@@ -96,5 +99,54 @@ public class AgentManager : MonoBehaviour
 
         //targetTransforms.RemoveAt(charDetails.AgentID);
         //return agents.RemoveAt(charDetails.AgentID);
+    }
+
+    public void UpdateQuestGiversPossibility()
+    {
+        for ( int i = 0; i < agents.size; i++ )
+        {
+            CharacterDetails currNpc = agents[i];
+            if ( currNpc.IsPlayer() )
+                return;
+
+            GameObject questStar = currNpc.gameObject.transform.FindChild( "QuestStar" ).gameObject;
+            QuestGiver questGiver = questStar.GetComponent<QuestGiver>();
+            questGiver.UpdateQuestPossibility();
+        }
+    }
+
+    public List<int> GetAgentIdsWithTraits( Trait trait, float value, bool greaterThan )
+    {
+        List<int> suitableAgents = new List<int>();
+
+        int numAgents = GetAgentCount();
+        for ( int i = 0; i < numAgents; i++ )
+        {
+            if ( ( agents[i].IsPlayer() ) || ( !agents[i].IsAlive() ) )
+                continue;
+
+            float currValue = agents[i].GetTraitsManager().GetTraitValue( trait );
+
+            if ( greaterThan )
+            {
+                if ( currValue >= value )
+                    suitableAgents.Add( i );
+            }
+            else
+            {
+                if ( currValue <= value )
+                    suitableAgents.Add( i );
+            }
+        }
+        return suitableAgents;
+    }
+
+    public void DeleteAllRelationshipsWithAgent( int agentId )
+    {
+        int numAgents = GetAgentCount();
+        for ( int i = 0; i < numAgents; i++ )
+        {
+            agents[i].GetRelationshipManager().DeleteRelationshipWithAgent( agentId );
+        }
     }
 }

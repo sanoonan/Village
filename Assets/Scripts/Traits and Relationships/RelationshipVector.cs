@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum RelationshipValue
+public enum RelationshipTrait
 {
     Friendship,      //platonic
     Attraction,    //romantic
@@ -15,8 +15,8 @@ public class RelationshipVector
     private const int _maxValue = 10;
     private const int _neutralValue = 0;
 
-    private int _numValues;
-    private float[] _values;
+    private int _numTraits;
+    private float[] _traits;
 
     private const float _minFamiliarity = 0.0f;
     private const float _maxFamiliarity = 10.0f;
@@ -25,13 +25,13 @@ public class RelationshipVector
 
     public RelationshipVector()
     {
-        int[] valueEnums = (int[])System.Enum.GetValues(typeof(RelationshipValue));
-        _numValues = valueEnums.Length;
+        int[] valueEnums = (int[])System.Enum.GetValues(typeof(RelationshipTrait));
+        _numTraits = valueEnums.Length;
 
-        _values = new float[_numValues];
+        _traits = new float[_numTraits];
 
-        for (int i = 0; i < _numValues; i++)
-            _values[i] = _neutralValue;
+        for (int i = 0; i < _numTraits; i++)
+            _traits[i] = _neutralValue;
             
         _familiarity = _startingFamiliarity;
     }
@@ -48,14 +48,25 @@ public class RelationshipVector
     
     private void RandomiseValues()
     {
-        for( int i=0; i<_numValues; i++ )
+        for( int i=0; i<_numTraits; i++ )
         {
-            _values[i] = Random.Range( _minValue, _maxValue );
+            _traits[i] = Random.Range( _minValue, _maxValue );
         }
     }
     private void RandomiseFamiliarity()
     {
         _familiarity = Random.Range( _minFamiliarity, _maxFamiliarity );
     }
+
+    public float GetTraitValue( RelationshipTrait trait )
+    {
+        return _traits[ (int) trait ];
+    }
+    public float GetFamiliarity()
+    {
+        return _familiarity;
+    }
+
+    
 
 }
