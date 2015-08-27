@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public abstract class PlotFragment
 {
+    public string _label = "";
+
     protected List<AuthorGoal> _authorGoals;
     protected QuestPattern _questPattern;
 
@@ -29,5 +31,7 @@ public abstract class PlotFragment
     protected abstract void SetQuestPattern();
 
     public abstract bool AreConstraintsFulfilled();
+
+    public abstract void PrintPlotDetails();
 }
 

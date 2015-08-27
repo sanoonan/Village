@@ -19,6 +19,7 @@ public class PF_TESTPlotFragment : PlotFragment
     public PF_TESTPlotFragment()
         : base()
     {
+        _label = "TEST. Just talk to questgiver";
     }
 
     protected override void SetAuthorGoals()
@@ -45,6 +46,11 @@ public class PF_TESTPlotFragment : PlotFragment
         _plotDetails = new PlotDetails( randomInt );
 
         return true;
+    }
+
+    public override void PrintPlotDetails()
+    {
+        Debug.Log( "questGiverNPC - " + AgentManager.Instance.GetAgentNameById( _plotDetails.questGiverNpc ) );
     }
 }
 

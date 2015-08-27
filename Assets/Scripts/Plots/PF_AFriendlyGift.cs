@@ -30,6 +30,7 @@ public class PF_AFriendlyGift : PlotFragment
     public PF_AFriendlyGift()
         : base()
     {
+        _label = "A Friendly Gift";
     }
 
     protected override void SetAuthorGoals()
@@ -91,6 +92,13 @@ public class PF_AFriendlyGift : PlotFragment
         int numItems = _possibleGifts.Length;
         int randomInt = Random.Range( 0, numItems );
         return _possibleGifts[randomInt];
+    }
+
+    public override void PrintPlotDetails()
+    {
+        Debug.Log( "giver - " + AgentManager.Instance.GetAgentNameById( _plotDetails.giverNpc ) );
+        Debug.Log( "receiver - " + AgentManager.Instance.GetAgentNameById( _plotDetails.receiverNpc ) );
+        Debug.Log( "gift - " + _plotDetails.giftItem );
     }
 }
 

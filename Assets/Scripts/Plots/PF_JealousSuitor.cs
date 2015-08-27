@@ -23,6 +23,7 @@ public class PF_JealousSuitor : PlotFragment
     public PF_JealousSuitor()
         : base()
     {
+        _label = "Jealous Suitor";
     }
 
     protected override void SetAuthorGoals()
@@ -93,5 +94,12 @@ public class PF_JealousSuitor : PlotFragment
         _plotDetails = possiblePlotCharacters[randomInt];
 
         return true;
+    }
+
+    public override void PrintPlotDetails()
+    {
+        Debug.Log( "suitor - " + AgentManager.Instance.GetAgentNameById( _plotDetails.suitorNpc ) );
+        Debug.Log( "loveInterest - " + AgentManager.Instance.GetAgentNameById( _plotDetails.loveInterestNpc ) );
+        Debug.Log( "victim - " + AgentManager.Instance.GetAgentNameById( _plotDetails.victemNpc ) );
     }
 }
